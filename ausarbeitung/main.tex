@@ -1,0 +1,101 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{graphicx} % Required for inserting images
+\usepackage{geometry}
+\usepackage{mathptmx} % Closest you can get to Times New Roman
+\usepackage[ngerman]{babel} % German language support
+\usepackage{footmisc}
+\usepackage{microtype}
+
+% Anpassung der Schriftgröße der Fußnoten
+\renewcommand{\footnotesize}{\fontsize{10pt}{12pt}\selectfont}
+
+\usepackage{ragged2e} % Text formatting
+\justifying % justify text
+
+
+% Zeilenabstand
+\usepackage{setspace}
+\setstretch{1.5}
+
+% Seitenabstände
+\geometry{top=3cm, left=3cm, right=3cm, bottom=3cm}
+
+\graphicspath{ {img/} }
+
+\title{Inwiefern unterscheiden sich n8n-basierte Workflows mit ChatGPT-Agenten und Ollama-Agenten in der Genauigkeit und Effizienz bei der Erkennung von Fake News in Nachrichtenschlagzeilen?
+ \\ \large Wissenschaftliche Themenarbeit}
+
+\author{Jonas Schierhold, Henning Franzen, Jan Osing}
+\date{Januar 2026}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\begin{center}
+    \includegraphics[width=150pt]{img/IHK-Logo.jpg} \includegraphics[width=150pt]{img/WHS-Logo.png}
+\end{center}
+
+\vfill
+\noindent
+\begin{tabular}{p{4cm}l}
+    Matrikelnummern & ### \tabularnewline
+    Studiengang & Duales Studium Bachelor of Arts Wirtschaftsinformatik \tabularnewline
+    Gruppe: & IT-BW-18 \tabularnewline
+    Themensteller: & Prof. Dr. Kruse \tabularnewline
+    Abgabedatum: & 27. Februar 2026 \tabularnewline
+\end{tabular}
+
+\newpage
+\pagenumbering{Roman} % Setzt die Nummerierung auf römnische Zahlen
+
+\tableofcontents
+
+\newpage
+
+\section*{Abkürzungsverzeichnis}
+
+\noindent
+\begin{tabular}{p{4cm}l}
+    WWW & World Wide Web \tabularnewline
+\end{tabular}
+
+\newpage
+\pagenumbering{arabic} % Wechsel zur arabischen Nummerierung
+\setcounter{page}{1} % Startet die Nummerierung bei 1
+\setcounter{section}{0} % Setzt den Abschnittszähler auf 0
+
+\section{Einleitung}
+Hier kommt die Einleitung.\footnote{BGH, Urteil vom 26.11.2015 - I ZR 3/14 (OLG Hamburg, LG Hamburg).}
+
+\noindent Ein weiterer Test Satz. \footnote{\textit{Grisse, Karina}, GRUR 2017, S.1073-1074.}
+
+\noindent Und noch einer mit seeeeeeeeeeeeeeehr viel inhalt. \footnote{Ebenda, S.1073-1075.}
+\section{Technologische Grundlagen}
+n8n
+\section{Methodisches Vorgehen}
+Hier kommt die Beschreibung des Methodikus.
+
+\section{Prototypische Implementierung}
+Hier kommt die Beschreibung der Prototypischen Implementierung.
+
+\section{Auswertung}
+Hier kommt die Beschreibung und Auswertung.
+
+\section{Fazit}
+Hier kommt das Fazit.
+
+\newpage
+
+\pagenumbering{Roman} % Setzt die Nummerierung auf römnische Zahlen
+\setcounter{page}{3} % Setzt die Nummerierung auf 3
+
+\begin{thebibliography}{99}
+\bibitem{Grisse2017} \textit{Grisse, Karina}, Was bleibt von der Störerhaftung?, GRUR 2017, S. 1073-1075
+
+\end{thebibliography}
+
+
+\end{document}
