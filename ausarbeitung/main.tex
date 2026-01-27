@@ -11,8 +11,6 @@
 [backend=biber,style=apa,sorting=ynt]{biblatex}
 \addbibresource{main.bib}
 
-\fontfamily{arial}
-
 % Anpassung der Schriftgröße der Fußnoten
 \renewcommand{\footnotesize}{\fontsize{10pt}{12pt}\selectfont}
 
@@ -24,8 +22,16 @@
 \usepackage{setspace}
 \setstretch{1.5}
 
+\fontfamily{arial}
+
 % Seitenabstände
-\geometry{top=3cm, left=3cm, right=3cm, bottom=3cm}
+\geometry{
+    top=3 cm,
+    left=6 cm,
+    right=2 cm,
+    bottom=2.5 cm,
+    headsep=1 cm
+}
 
 \graphicspath{ {img/} }
 
@@ -81,21 +87,22 @@
 
     \section{Einleitung}
     Seit einigen Jahren verändert sich das Diskussionsklima in Deutschland. Der Umgangston wird rauer, die Meinungen
-    polarisieren und die Bereitschaft, einer Position der Gegenseite inhaltlich zuzustimmen, nimmt ab.\footnote{\cite{BERTELSMANN}.}
-    \par
+    polarisieren und die Bereitschaft, einer Position der Gegenseite inhaltlich zuzustimmen, nimmt
+    ab.\footnote{\cite[S.~8]{Bertelsmann}.}
+
 
     Besonders durch schnelllebige Social Media Formate wie TikTok oder Instagram-Reels ist es einfach geworden,
-    Falschaussagen zu verbreiten, um die eigene Position zu stärken. Botnetzwerke verbreiten gezielt Posts und
-    Kommentare mit Falschinformationen und Verschwörungsmythen, die von der vermeintlichen Klimalüge bis zu extrem
-    verzerrten oder historisch falschen Narrativen reichen.
-    \par
-    Gleichzeitig nimmt die Nutzung von generativer KI an Fahrt auf. 2025 nutzten 65\% der befragten laut eigener Angabe
-    KI regelmäßig. Das ist ein deutliche Anstieg, denn zwei Jahre vorher waren es noch 37\%.
-    \par
+    Falschaussagen zu verbreiten, um die eigene Position zu stärken.\footnote{\cite[S.~10]{Nim}} Botnetzwerke verbreiten
+    gezielt Posts und Kommentare mit Falschinformationen und Verschwörungsmythen, die von der vermeintlichen Klimalüge
+    bis zu extrem verzerrten oder historisch falschen Narrativen reichen.\footnote{\cite{Bsi}}
+
+    Gleichzeitig nimmt die Nutzung von generativer KI an Fahrt auf. 2025 nutzten 65\% der Befragten einer
+    repräsentativen Studie\footnote{\cite{TV-Verband}} laut eigener Angabe KI regelmäßig. Das ist ein deutliche Anstieg,
+    denn zwei Jahre vorher waren es noch 37\%.
+
     Vor diesem Hintergrund liegt der Einsatz generativer KI zur Überprüfung von Informationen nahe. Dabei stellt sich
     jedoch die Frage nach der Zuverlässigkeit und Effektivität, welche wir im Folgenden bei verschiedenen Modellen
     vergleichen wollen.\cite{TEST}
-
 
 
     \section{Technologische Grundlagen}
