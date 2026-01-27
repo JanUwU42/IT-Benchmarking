@@ -7,6 +7,8 @@
 \usepackage{footmisc}
 \usepackage{microtype}
 
+\fontfamily{arial}
+
 % Anpassung der Schriftgröße der Fußnoten
 \renewcommand{\footnotesize}{\fontsize{10pt}{12pt}\selectfont}
 
@@ -87,7 +89,7 @@
     \par
     Vor diesem Hintergrund liegt der Einsatz generativer KI zur Überprüfung von Informationen nahe. Dabei stellt sich
     jedoch die Frage nach der Zuverlässigkeit und Effektivität, welche wir im Folgenden bei verschiedenen Modellen
-    vergleichen wollen.
+    vergleichen wollen.\cite{TEST}
 
 
 
@@ -115,10 +117,8 @@
     \pagenumbering{Roman} % Setzt die Nummerierung auf römnische Zahlen
     \setcounter{page}{3} % Setzt die Nummerierung auf 3
 
-    \begin{thebibliography}{99}
-        \bibitem{Grisse2017} \textit{Grisse, Karina}, Was bleibt von der Störerhaftung?, GRUR 2017, S. 1073-1075
-
-    \end{thebibliography}
+    \bibliography{main}
+    \bibliographystyle{plain}
 
 
 \end{document}
