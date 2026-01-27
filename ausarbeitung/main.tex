@@ -7,6 +7,10 @@
 \usepackage{footmisc}
 \usepackage{microtype}
 
+\usepackage
+[backend=biber,style=apa,sorting=ynt]{biblatex}
+\addbibresource{main.bib}
+
 \fontfamily{arial}
 
 % Anpassung der Schriftgröße der Fußnoten
@@ -77,8 +81,9 @@
 
     \section{Einleitung}
     Seit einigen Jahren verändert sich das Diskussionsklima in Deutschland. Der Umgangston wird rauer, die Meinungen
-    polarisieren und die Bereitschaft, einer Position der Gegenseite inhaltlich zuzustimmen, nimmt ab.
+    polarisieren und die Bereitschaft, einer Position der Gegenseite inhaltlich zuzustimmen, nimmt ab.\footnote{\cite{BERTELSMANN}.}
     \par
+
     Besonders durch schnelllebige Social Media Formate wie TikTok oder Instagram-Reels ist es einfach geworden,
     Falschaussagen zu verbreiten, um die eigene Position zu stärken. Botnetzwerke verbreiten gezielt Posts und
     Kommentare mit Falschinformationen und Verschwörungsmythen, die von der vermeintlichen Klimalüge bis zu extrem
@@ -117,8 +122,7 @@
     \pagenumbering{Roman} % Setzt die Nummerierung auf römnische Zahlen
     \setcounter{page}{3} % Setzt die Nummerierung auf 3
 
-    \bibliography{main}
-    \bibliographystyle{plain}
+    \printbibliography
 
 
 \end{document}
