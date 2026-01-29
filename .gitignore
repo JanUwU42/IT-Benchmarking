@@ -6,3 +6,7 @@ main.pdf
 main.toc
 main.synctex.gz
 .DS_Store
+main.bbl
+main.bcf
+main.blg
+main.run.xml
