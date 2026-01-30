@@ -2,10 +2,13 @@
 
 \usepackage{graphicx} % Required for inserting images
 \usepackage{geometry}
-\usepackage{mathptmx} % Closest you can get to Times New Roman
-\usepackage[ngerman]{babel} % German language support
 \usepackage{footmisc}
 \usepackage{microtype}
+
+\usepackage{helvet} % Set font to Arial
+\renewcommand{\familydefault}{\sfdefault} % Set font to Arial
+
+\usepackage[ngerman]{babel} % German language support
 
 \usepackage
 [backend=biber,style=apa,sorting=nyt]{biblatex}
@@ -21,8 +24,6 @@
 % Zeilenabstand
 \usepackage{setspace}
 \setstretch{1.5}
-
-\fontfamily{arial}
 
 % Seitenabstände
 \geometry{
