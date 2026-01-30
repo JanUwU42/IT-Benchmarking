@@ -78,6 +78,9 @@
     \noindent
     \begin{tabular}{p{4cm}l}
         WWW & World Wide Web \tabularnewline
+        OLLAMA & Omni-Layer Learning Language Acquisition Model \tabularnewline
+        KI & Künstliche Intelligenz \tabularnewline
+        AI & Artifical intelligence (engl. Künstliche Intelligenz) \tabularnewline
     \end{tabular}
 
     \newpage
@@ -113,7 +116,70 @@
 
 
     \section{Methodisches Vorgehen}
-    Hier kommt die Beschreibung des Methodikus.
+    \subsection{Auswahl von Kennzahlen zur Evaluierung des Workflows}
+    Für die Evaluierung von einem KI-Agenten Workflow stehen eine Vielzahl von Kennzahlen zur Verfügung.\footnote{\cite[S.6062]{KennzahlenAiAgents}.}
+    Es werden nur für diese Arbeit relevante Kennzahlen ausgewählt und betrachtet. Ziel der Auswahl der Kennzahlen ist
+    es eine Vergleichsgrundlage
+    zwischen einem lokalen KI-Agenten mit OLLAMA und einem von OpenAI herzustellen. Hinzu kommt, dass der Workflow als
+    ganzes betrachtet wird und auf eine Praxistauglichkeit überprüft wird.
+    \newline
+
+    Der KI-Agent wird für diese Arbeit in zwei Dimensionen evaluiert:
+    \begin{enumerate}
+        \item \textbf{Outputqualität:}
+        Effektivität der Aufgabenerfüllung
+        \item \textbf{Effizienz:}
+        Ressourceneinsatz und Geschwindigkeit
+    \end{enumerate}
+
+    Einige Metriken können bei der Evaluierung von KI-Agenten durch eine Schritt-für-Schrittauswertung
+    zu oberflächliche und ungenaue Auswertungen führen. Die KI-Agenten können für die gleiche Problemstellung unterschiedliche
+    Lösungswege durchführen, welche zum gleichen Ergebniss führen können.  Deshalb wird für die Methodikauswahl die
+    Vorgehensweise von \cite[S. 6065ff.]{KennzahlenAiAgents} verwendet. Die Autoren schlagen vor, dass man sich nur die korrekten Schritte
+    in der relativen Folge anschaut und diese zur Auswertung verwendet, solange die gleiche relative Schrittreihenfolge
+    eingehalten wird.
+    Die inkorrekten Schritte werden nicht betrachtet.
+    Um für die Praxistauglichkeit eine fundierte Aussage treffen zu können, muss in der Outputqualität die Evaluierung
+    der Prozessstabilität (syntaktische Korrektheit) und die inhaltliche Korrektheit (semantische Korrektheit) möglich sein.
+    Das wird für diese Arbeit durch die folgenden Metriken definiert: \footnote{\cite[S. 6065f.]{KennzahlenAiAgents}}
+
+    \begin{itemize}
+        \item \textbf{Task Completion Ratio:}
+        Diese Kennzahl beschreibt den prozentualen Anteil der Aufgaben, die der Agent technisch erfolgreich zu einem Abschluss gebracht hat.
+
+        \item \textbf{Invalid Format:}
+        Die Häufigkeit, mit der die Ausgabe des Modells nicht dem gefordertem Schema entspricht.
+
+        \item \textbf{Invalid Action:}
+        Die Häufigkeit von Fehlversuche des Agenten, wie etwa den Aufruf nicht existenter Tools oder die Verwendung falscher Parameter.
+
+        \item \textbf{F1-Score:}
+        Das harmonische Mittel von Präzision und Recall, um die Zuverlässigkeit eines Modells bei Klassifizierungsaufgaben präzise zu bewerten
+    \end{itemize}
+
+
+
+    Ergänzend zur Outputqualität wird wie oben beschrieben die Effizienz untersucht. Diese Dimension ist von besonderer
+    Relevanz um Unterschiede zwischen der lokalen Hardware-Limitation und den hochverfügbaren KI-Modellen von OpenAI
+    quantifizierbar zu machen. Die Metriken sind nicht nur aus technischer Sicht relevant, sondern auch
+    aus wirtschaftlicher Sicht. Dadurch kann die fundierte Aussage zur Praxistauglichkeit von mehreren Dimensionen aus
+    betrachtet werden, um ein umfassendes Bild zu erzeugen. Für diese Arbeit sind folgende Metriken relevant: \footnote{\cite[S. 6.]{AigenticAiOptimizing}}
+
+    \begin{itemize}
+        \item \textbf{End-to-End Latency:}
+        Die Gesamtdauer, die der Workflow von Eingabe der Daten bis zum finalen Ergebniss benötigt.
+        \item \textbf{Tokens per Second:}
+        Die Generierungsgeschwindigkeit des Modells.
+        \item \textbf{Token usage:}
+        Die Gesamtzahl an verbrauchten Tokens für einen Input-Output Durchlauf.
+        \item \textbf{Kosten pro Workflowdurchlauf:}
+        Die Kosten für die Durchführung einer Überprüfung
+    \end{itemize}
+
+    Alle Kennzahlen werden durch einen arithmetischen Mittelwert und die Standardabweichung abgebildet.
+
+    \subsection{Auwsahl eines Datensatzes}
+    \subsection{Versuchsaufbau}
 
 
     \section{Prototypische Implementierung}
