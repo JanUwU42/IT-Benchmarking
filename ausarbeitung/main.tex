@@ -130,10 +130,12 @@
 
     \subsection{Ollama  \& Begrenzung eigene Hardware}
     \subsubsection{Ollama}
-    Ollama ist ein Open-Source-Tool, das die lokale Bereitstellung und Ausführung von Large Language Models auf eigener Hardware ermöglicht. Das Tool  ist für den Einsatz in Umgebungen mit begrenzten Rechenressourcen sowie für den Offline-Betrieb ausgelegt und erlaubt die Ausführung leistungsfähiger Sprachmodelle ohne Anbindung an externe Cloud-Infrastrukturen. Da die Verarbeitung vollständig lokal erfolgt, verbleiben sämtliche Daten innerhalb der eigenen Systemumgebung. Auf diese Weise können Anforderungen an Datenschutz, Datensouveränität und Vertraulichkeit zuverlässig eingehalten werden, wodurch sich Ollama insbesondere für Anwendungskontexte mit einem besonderen Fokus auf Datenschutz und IT-Sicherheit eignet. \footnote{\cite{Ollama-Local-Models-Case-Study}.}
+    Ollama ist ein Open-Source-Tool, das die lokale Bereitstellung und Ausführung von Large Language Models auf eigener Hardware ermöglicht. Das Tool  ist für den Einsatz in Umgebungen mit begrenzten Rechenressourcen sowie für den Offline-Betrieb ausgelegt und erlaubt die Ausführung leistungsfähiger Sprachmodelle ohne Anbindung an externe Cloud-Infrastrukturen. Da die Verarbeitung vollständig lokal erfolgt, verbleiben sämtliche Daten innerhalb der eigenen Systemumgebung. Auf diese Weise können Anforderungen an Datenschutz, Datensouveränität und Vertraulichkeit zuverlässig eingehalten
 
     \subsubsection{Begrenzung eigene Hardware}
-    TODO
+    Die Leistungsfähigkeit der lokalen Ollama LLMs ist begrenzt durch die uns verfügbare Hardware. Insbesondere der verfügbare Arbeitsspeicher (RAM) und die Rechenleistung der CPU/GPU bestimmen, welche Modelle ausgeführt werden können.
+
+    Das Benchmarking wird auf einem Linux System mit dem "6.18.7-2-cachyos" Kernel mit 64 GB DDR5 RAM, einem AMD Ryzen 7 9800X3D Prozessor mit 16 Kernen und 5,2 GHz Taktrate, sowie einer AMD Radeon RX 9070 XT Grafikkarte durchgeführt. Dadurch sind wir in der Lage, relativ leistungsfähige LLMs lokal auszuführen, jedoch sind die Möglichkeiten im Vergleich zu Cloud-basierten eingeschränkt.
 
     \section{Methodisches Vorgehen}
     \subsection{Auswahl von Kennzahlen zur Evaluierung des Workflows}
@@ -218,7 +220,9 @@
 
 
     \section{Prototypische Implementierung}
-    Hier kommt die Beschreibung der prototypischen Implementierung.
+    Die prototypische implementierung erfolgt anhan der theoretischen Grundlagen, die in dem vorherigen Kapitel beschrieben wurden.
+    \newline
+    Dabei wird ein Workflow in n8n erstellt, der die Erkennung von Fake News in Nachrichtenschlagzeilen mithilfe von ChatGPT- und Ollama-Agenten durchführt.
 
 
     \section{Auswertung}
