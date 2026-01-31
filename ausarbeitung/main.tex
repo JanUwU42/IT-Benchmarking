@@ -4,6 +4,8 @@
 \usepackage{geometry}
 \usepackage{footmisc}
 \usepackage{microtype}
+\usepackage{hyperref}
+
 
 \usepackage{helvet} % Set font to Arial
 \renewcommand{\familydefault}{\sfdefault} % Set font to Arial
@@ -166,20 +168,35 @@
     betrachtet werden, um ein umfassendes Bild zu erzeugen. Für diese Arbeit sind folgende Metriken relevant: \footnote{\cite[S. 6.]{AigenticAiOptimizing}}
 
     \begin{itemize}
-        \item \textbf{End-to-End Latency:}
+        \item \textbf{End-to-End Latency:\footnote{\cite[S. 2.]{End2EndLatency}}}
         Die Gesamtdauer, die der Workflow von Eingabe der Daten bis zum finalen Ergebniss benötigt.
-        \item \textbf{Tokens per Second:}
+        \item \textbf{Tokens per Second:\footnote{\cite[S. 2.]{erdil2025inferenceeconomicslanguagemodels}}}
         Die Generierungsgeschwindigkeit des Modells.
-        \item \textbf{Token usage:}
+        \item \textbf{Token usage:\footnote{\cite[S. 9.]{gendreaudistler2025automatinghighenergyphysics}}}
         Die Gesamtzahl an verbrauchten Tokens für einen Input-Output Durchlauf.
         \item \textbf{Kosten pro Workflowdurchlauf:}
         Die Kosten für die Durchführung einer Überprüfung
     \end{itemize}
 
-    Alle Kennzahlen werden durch einen arithmetischen Mittelwert und die Standardabweichung abgebildet.
+    Die Resultate der Kennzahlen werden als arithmetisches Mittel der Kennzahlen dargestellt. Zu jedem Mittelwert wird
+    auch die Standardabweichung angegeben.
 
     \subsection{Auwsahl eines Datensatzes}
+    Zum Testen des Workflows wird ein öffentlicher Datensatz von Kaggle\footnote{\url{https://www.kaggle.com}.} ausgewählt. Die
+    Qualität des Datensatzes ist von entscheidender Relevanz. Um eine realistische Evaluation machen zu können müssen
+    die Daten korrekt sein. Außerdem muss eine Zuordnung zu Wahr oder Falsch eindeutig machbar sein. Ferner muss eine
+    eindeutige zeitliche Einordnung möglich sein, weil lokale OLLAMA Modelle meist mit veralteten Daten trainiert sind und
+    somit das KI-Modell von OpenAI einen Vorteil hat. Die Qualität des Datensatzes wird direkt von Kaggle bestimmt. Es gibt
+    einen Usability Score, welcher unter anderem das die Vorgehensweise und Quellen für die Erstellung des Datensatzes überprüft.
+    Nichtsdestotrotz muss der Herausgebende des Datensatzes überprüft werden und auf die Vertrauenswürdigkeit überprüft werden.
+    \newline
+    Für diese Arbeit wurde der folgende \href{https://www.kaggle.com/datasets/bhavikjikadara/fake-news-detection}{Datensatz} von Bhavik Jikadara verwendet
+
+
     \subsection{Versuchsaufbau}
+     Hier beschreiben, wie Daten in n8n reinkommen.
+     Lokale Hardware Limitation , also Stichproben durchführen.
+     Abstrahiertes Prozessdiagramm erstellen
 
 
     \section{Prototypische Implementierung}
