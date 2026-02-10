@@ -1,0 +1,205 @@
+{
+  "name": "IT-Benchmarking",
+  "nodes": [
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "responses": {
+          "values": [
+            {
+              "content": "=Classify this headline as REAL or FAKE.\n\nHeadline: {{ $json.body.title }}\nText: {{ $json.body.text }}\n\nYou can use the sentiment score to help your decision: {{ $json.sentimentAnalysis.category }}\n\nAnswer only with: REAL or FAKE."
+            }
+          ]
+        },
+        "builtInTools": {
+          "webSearch": {
+            "searchContextSize": "high"
+          }
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        -64,
+        112
+      ],
+      "id": "d8e03288-8aa0-4bd0-a285-087d4e497243",
+      "name": "Message a model",
+      "credentials": {
+        "openAiApi": {
+          "id": "8v8rZztATRNHDKFt",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "d15a6547-dd1d-4031-b6fa-fe92165249eb",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -672,
+        112
+      ],
+      "id": "5f16d10b-681c-400b-bd7a-da17f90fa86a",
+      "name": "Webhook",
+      "webhookId": "d15a6547-dd1d-4031-b6fa-fe92165249eb"
+    },
+    {
+      "parameters": {
+        "inputText": "={{ $json.body }}",
+        "options": {
+          "enableAutoFixing": true
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.sentimentAnalysis",
+      "typeVersion": 1.1,
+      "position": [
+        -480,
+        96
+      ],
+      "id": "f0c39ea7-76e3-486b-878e-a45d8b6e128e",
+      "name": "Sentiment Analysis"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "chatgpt-4o-latest",
+          "mode": "list",
+          "cachedResultName": "chatgpt-4o-latest"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -480,
+        336
+      ],
+      "id": "f74313aa-3a91-4e2e-baa3-a9c5e6b41087",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "8v8rZztATRNHDKFt",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"result\": \"{{ $json.output[0].content[0].text }}\"\n}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "content-type",
+                "value": "application/json"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        288,
+        112
+      ],
+      "id": "df6c6257-fa7d-4be6-8e87-6cd6b238ef9e",
+      "name": "Respond to Webhook",
+      "onError": "continueErrorOutput"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Sentiment Analysis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Sentiment Analysis",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sentiment Analysis": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "04af17a5-cb47-4faf-b4ea-25d6f9de64c1",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e59f4c46da85f7454069750a1e298d42b58cc6c7697569ca881968cbe14ff868"
+  },
+  "id": "luezdwKuXTVvniSQBF1Ut",
+  "tags": []
+}
