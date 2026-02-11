@@ -30,8 +30,8 @@
 % Seitenabstände
 \geometry{
     top=3 cm,
-    left=6 cm,
-    right=2 cm,
+    left=2.5 cm,
+    right=2.5 cm,
     bottom=2.5 cm,
     headsep=1 cm
 }
@@ -40,6 +40,9 @@
 
 % No indent für ganzes dokument
 \setlength\parindent{0pt}
+
+% Zeilenabstand nach paragraphs
+\setlength{\parskip}{10\baseline}
 
 
 \title{Inwiefern unterscheiden sich n8n-basierte Workflows mit ChatGPT-Agenten und Ollama-Agenten in der Genauigkeit und Effizienz bei der Erkennung von Fake News in Nachrichtenschlagzeilen?
@@ -107,10 +110,22 @@
     denn zwei Jahre vorher waren es noch 37\%.
 
     Vor diesem Hintergrund liegt der Einsatz generativer KI zur Überprüfung von Informationen nahe. Dabei stellt sich
-    jedoch die Frage nach der Zuverlässigkeit und Effektivität, welche wir im Folgenden bei verschiedenen Modellen
-    vergleichen wollen.
+    jedoch die Frage nach der Zuverlässigkeit und Effektivität, welche im Folgenden bei zwei verschiedenen Modellen
+    verglichen werden.
 
-    Für den Vergleich werden wir Benchmarking verwenden. Benchmarking ist...
+
+    Für den Vergleich wird Benchmarking verwendet. Unter Benchmarking versteht man einen systematischen
+    Leistungsvergleich, bei dem Objekte anhand eines gemeinsamen Maßstabs bewertet werden, um Stärken und Schwächen
+    sichtbar zu machen.\footnote{\cite{WirtschaftslexikonGabler}.} Im vorliegenden Use-Case werden ChatGPT und Ollama in n8n-Workflows
+    eingebettet. So können sie mit Testdaten versorgt werden. Außerdem werden danach die Ergebnisse erfasst und anhand
+    von ausgewählten Kennzahlen bewertet.
+
+    Im Folgenden wird dabei zunächst ein theoretisches Verständnis geschaffen, bevor das Methodische Vorgehen des
+    Use-Cases erläutert wird. Danach wird die Implementierung erklärt und im Anschluss folgt die Auswertung und das
+    darauf aufbauende Fazit.
+
+
+
 
 
     \section{Technologische Grundlagen}
