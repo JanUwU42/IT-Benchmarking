@@ -45,7 +45,8 @@
 \setlength{\parskip}{10\baseline}
 
 
-\title{Inwiefern unterscheiden sich n8n-basierte Workflows mit ChatGPT-Agenten und Ollama-Agenten in der Genauigkeit und Effizienz bei der Erkennung von Fake News in Nachrichtenschlagzeilen?
+% \title{Inwiefern unterscheiden sich n8n-basierte Workflows mit ChatGPT-Agenten und Ollama-Agenten in der Genauigkeit und Effizienz bei der Erkennung von Fake News in Nachrichtenschlagzeilen?
+\title{Kennzahlengestützter Vergleich von n8n-Worklows mit ChatGPT und Ollama zur Erkennung von Fake News in Nachrichtenschlagzeilen
 \\ \large Wissenschaftliche Themenarbeit}
 
 \author{Jonas Schierhold, Henning Franzen, Jan Osing}
@@ -86,6 +87,8 @@
         OLLAMA & Omni-Layer Learning Language Acquisition Model \tabularnewline
         KI & Künstliche Intelligenz \tabularnewline
         AI & Artifical intelligence (engl. Künstliche Intelligenz) \tabularnewline
+        LLM & Large Language Model
+
     \end{tabular}
 
     \newpage
@@ -101,13 +104,13 @@
 
 
     Besonders durch schnelllebige Social Media Formate wie TikTok oder Instagram-Reels ist es einfach geworden,
-    Falschaussagen zu verbreiten, um die eigene Position zu stärken.\footnote{\cite[S.~10]{Nim}.} Botnetzwerke verbreiten
-    gezielt Posts und Kommentare mit Falschinformationen und Verschwörungsmythen, die von der vermeintlichen Klimalüge
-    bis zu extrem verzerrten oder historisch falschen Narrativen reichen.\footnote{\cite{Bsi}.}
+    Falschaussagen zu verbreiten, um die eigene Position zu stärken.\footnote{\cite[S.~10]{Nim}.} Botnetzwerke
+    verbreiten gezielt Posts und Kommentare mit Falschinformationen und Verschwörungsmythen, die von der vermeintlichen
+    Klimalüge bis zu extrem verzerrten oder historisch falschen Narrativen reichen.\footnote{\cite{Bsi}.}
 
     Gleichzeitig nimmt die Nutzung von generativer KI an Fahrt auf. 2025 nutzten 65\% der Befragten einer
-    repräsentativen Studie\footnote{\cite{TV-Verband}.} laut eigener Angabe KI regelmäßig. Das ist ein deutliche Anstieg,
-    denn zwei Jahre vorher waren es noch 37\%.
+    repräsentativen Studie\footnote{\cite{TV-Verband}.} laut eigener Angabe KI regelmäßig. Das ist ein deutliche
+    Anstieg, denn zwei Jahre vorher waren es noch 37\%.
 
     Vor diesem Hintergrund liegt der Einsatz generativer KI zur Überprüfung von Informationen nahe. Dabei stellt sich
     jedoch die Frage nach der Zuverlässigkeit und Effektivität, welche im Folgenden bei zwei verschiedenen Modellen
@@ -117,16 +120,13 @@
     Für den Vergleich wird Benchmarking verwendet. Unter Benchmarking versteht man einen systematischen
     Leistungsvergleich, bei dem Objekte anhand eines gemeinsamen Maßstabs bewertet werden, um Stärken und Schwächen
     sichtbar zu machen.\footnote{\cite{WirtschaftslexikonGabler}.} Im vorliegenden Use-Case werden ChatGPT und Ollama
-    in n8n-Workflows eingebettet. Anhand von Testdaten werden die Worfklows ausgeführt und miteinander verglichen. Dazu
-    werden die Ergebnisse erfasst und durch ausgewählte Kennzahlen bewertet.
+    in n8n-Workflows eingebettet. Die Workflows erhalten verschiedene Nachrichten-Schlagzeilen als Testdaten, welche als
+    wahr oder falsch klassifiziert werden sollen. Abschließend werden die Ergebnisse erfasst und durch ausgewählte
+    Kennzahlen bewertet.
 
-    Diese Arbeit schafft dabei zunächst ein theoretisches Verständnis, bevor das Methodische Vorgehen des
+    Diese Arbeit schafft dabei zunächst ein theoretisches Verständnis, bevor das methodische Vorgehen des
     Use-Cases erläutert wird. Danach wird die Implementierung erklärt und im Anschluss folgt die Auswertung und das
     darauf aufbauende Fazit.
-
-
-
-
 
     \section{Technologische Grundlagen}
     \subsection {n8n}
