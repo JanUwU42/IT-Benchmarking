@@ -1,15 +1,17 @@
+import argparse
 import csv
 import random
-import requests
 import time
-import argparse
-from sklearn.metrics import f1_score, classification_report, confusion_matrix
+
+import requests
+from sklearn.metrics import classification_report, confusion_matrix, f1_score
 
 # Webhook URLs for different providers
 WEBHOOK_URLS = {
     "ollama": "http://localhost:5678/webhook-test/d15a6547-dd1d-4031-b6fa-fe92165249eb",
-    "chatgpt": "http://localhost:5678/webhook-test/YOUR_CHATGPT_WEBHOOK_ID_HERE",
+    "chatgpt": "http://localhost:5678/webhook/d15a6547-dd1d-4031-b6fa-fe92165249eb",
 }
+
 
 def parse_arguments():
     """Parse command-line arguments."""
@@ -22,70 +24,68 @@ Examples:
   python webhook_trigger.py --provider chatgpt --samples 50
   python webhook_trigger.py -p ollama -s 200 --fake-csv data/fake.csv --true-csv data/true.csv
   python webhook_trigger.py --provider ollama --url http://custom-url.com/webhook
-        """
+        """,
     )
 
     parser.add_argument(
-        '-p', '--provider',
+        "-p",
+        "--provider",
         type=str,
-        choices=['ollama', 'chatgpt'],
+        choices=["ollama", "chatgpt"],
         required=True,
-        help="LLM provider to use (ollama or chatgpt)"
+        help="LLM provider to use (ollama or chatgpt)",
     )
 
     parser.add_argument(
-        '-s', '--samples',
+        "-s",
+        "--samples",
         type=int,
         default=100,
-        help="Number of random samples to test (default: 100)"
+        help="Number of random samples to test (default: 100)",
     )
 
     parser.add_argument(
-        '--fake-csv',
+        "--fake-csv",
         type=str,
-        default='fake.csv',
-        help="Path to fake news CSV file (default: fake.csv)"
+        default="fake.csv",
+        help="Path to fake news CSV file (default: fake.csv)",
     )
 
     parser.add_argument(
-        '--true-csv',
+        "--true-csv",
         type=str,
-        default='true.csv',
-        help="Path to true news CSV file (default: true.csv)"
+        default="true.csv",
+        help="Path to true news CSV file (default: true.csv)",
     )
 
     parser.add_argument(
-        '--url',
+        "--url",
         type=str,
         default=None,
-        help="Custom webhook URL (overrides provider default)"
+        help="Custom webhook URL (overrides provider default)",
     )
 
     parser.add_argument(
-        '--seed',
-        type=int,
-        default=None,
-        help="Random seed for reproducible sampling"
+        "--seed", type=int, default=None, help="Random seed for reproducible sampling"
     )
 
     return parser.parse_args()
 
+
 def load_csv(filepath, label):
     """Load CSV file and return list of dictionaries with source label."""
     data = []
-    with open(filepath, 'r', encoding='utf-8') as file:
+    with open(filepath, "r", encoding="utf-8") as file:
         reader = csv.DictReader(file)
         for row in reader:
-            row['_source'] = label  # 'fake' or 'true'
+            row["_source"] = label  # 'fake' or 'true'
             data.append(row)
     return data
 
+
 def send_to_webhook(webhook_url, title, text):
     """Send title and text to the webhook and measure latency."""
-    payload = {
-        "title": title,
-        "text": text
-    }
+    payload = {"title": title, "text": text}
 
     start_time = time.time()
     try:
@@ -94,11 +94,7 @@ def send_to_webhook(webhook_url, title, text):
         latency = (end_time - start_time) * 1000  # Convert to milliseconds
 
         response.raise_for_status()
-        return {
-            "success": True,
-            "response": response.json(),
-            "latency_ms": latency
-        }
+        return {"success": True, "response": response.json(), "latency_ms": latency}
     except requests.exceptions.JSONDecodeError:
         end_time = time.time()
         latency = (end_time - start_time) * 1000
@@ -106,16 +102,13 @@ def send_to_webhook(webhook_url, title, text):
             "success": False,
             "error": "Invalid JSON response",
             "latency_ms": latency,
-            "raw_response": response.text if 'response' in dir() else None
+            "raw_response": response.text if "response" in dir() else None,
         }
     except requests.exceptions.RequestException as e:
         end_time = time.time()
         latency = (end_time - start_time) * 1000
-        return {
-            "success": False,
-            "error": str(e),
-            "latency_ms": latency
-        }
+        return {"success": False, "error": str(e), "latency_ms": latency}
+
 
 def parse_prediction(response_data):
     """
@@ -126,15 +119,16 @@ def parse_prediction(response_data):
         return None
 
     # Try common response field names
-    for field in ['prediction', 'label', 'result', 'classification', 'output']:
+    for field in ["prediction", "label", "result", "classification", "output"]:
         if field in response_data:
             value = str(response_data[field]).lower().strip()
-            if value in ['fake', 'false', '0']:
-                return 'fake'
-            elif value in ['true', 'real', '1']:
-                return 'true'
+            if value in ["fake", "false", "0"]:
+                return "fake"
+            elif value in ["true", "real", "1"]:
+                return "true"
 
     return None
+
 
 def main():
     args = parse_arguments()
@@ -146,9 +140,9 @@ def main():
     # Determine webhook URL
     webhook_url = args.url if args.url else WEBHOOK_URLS[args.provider]
 
-    print(f"{'='*60}")
+    print(f"{'=' * 60}")
     print(f"FAKE NEWS DETECTION BENCHMARK")
-    print(f"{'='*60}")
+    print(f"{'=' * 60}")
     print(f"Provider:    {args.provider.upper()}")
     print(f"Webhook URL: {webhook_url}")
     print(f"Samples:     {args.samples}")
@@ -156,12 +150,12 @@ def main():
     print(f"True CSV:    {args.true_csv}")
     if args.seed:
         print(f"Random Seed: {args.seed}")
-    print(f"{'='*60}\n")
+    print(f"{'=' * 60}\n")
 
     # Load both CSV files with labels
     try:
-        fake_data = load_csv(args.fake_csv, 'fake')
-        true_data = load_csv(args.true_csv, 'true')
+        fake_data = load_csv(args.fake_csv, "fake")
+        true_data = load_csv(args.true_csv, "true")
     except FileNotFoundError as e:
         print(f"Error: {e}")
         return
@@ -184,35 +178,41 @@ def main():
     failed_requests = 0
 
     for i, sample in enumerate(samples, 1):
-        title = sample.get('title', '')
-        text = sample.get('text', '')
-        actual_label = sample['_source']
+        title = sample.get("title", "")
+        text = sample.get("text", "")
+        actual_label = sample["_source"]
 
         result = send_to_webhook(webhook_url, title, text)
-        latencies.append(result['latency_ms'])
+        latencies.append(result["latency_ms"])
 
-        if result['success']:
+        if result["success"]:
             successful_requests += 1
-            prediction = parse_prediction(result['response'])
+            prediction = parse_prediction(result["response"])
 
             if prediction is None:
                 invalid_responses += 1
-                print(f"[{i}/{sample_size}] Invalid response format: {result['response']}")
+                print(
+                    f"[{i}/{sample_size}] Invalid response format: {result['response']}"
+                )
             else:
                 y_true.append(actual_label)
                 y_pred.append(prediction)
                 is_correct = prediction == actual_label
                 status = "✓" if is_correct else "✗"
-                print(f"[{i}/{sample_size}] {status} Actual: {actual_label}, Predicted: {prediction}, Latency: {result['latency_ms']:.2f}ms")
+                print(
+                    f"[{i}/{sample_size}] {status} Actual: {actual_label}, Predicted: {prediction}, Latency: {result['latency_ms']:.2f}ms"
+                )
         else:
             failed_requests += 1
             invalid_responses += 1
-            print(f"[{i}/{sample_size}] Request failed: {result.get('error', 'Unknown error')}")
+            print(
+                f"[{i}/{sample_size}] Request failed: {result.get('error', 'Unknown error')}"
+            )
 
     # Calculate and display metrics
-    print(f"\n{'='*60}")
+    print(f"\n{'=' * 60}")
     print(f"RESULTS SUMMARY - {args.provider.upper()}")
-    print(f"{'='*60}")
+    print(f"{'=' * 60}")
 
     # Latency statistics
     if latencies:
@@ -237,9 +237,9 @@ def main():
         correct = sum(1 for t, p in zip(y_true, y_pred) if t == p)
         accuracy = correct / len(y_true) * 100
 
-        f1 = f1_score(y_true, y_pred, pos_label='fake', average='binary')
-        f1_weighted = f1_score(y_true, y_pred, average='weighted')
-        f1_macro = f1_score(y_true, y_pred, average='macro')
+        f1 = f1_score(y_true, y_pred, pos_label="fake", average="binary")
+        f1_weighted = f1_score(y_true, y_pred, average="weighted")
+        f1_macro = f1_score(y_true, y_pred, average="macro")
 
         print(f"\n🎯 CLASSIFICATION METRICS:")
         print(f"   Accuracy:            {accuracy:.2f}%")
@@ -248,9 +248,9 @@ def main():
         print(f"   F1 Score (macro):    {f1_macro:.4f}")
 
         print(f"\n📋 DETAILED CLASSIFICATION REPORT:")
-        print(classification_report(y_true, y_pred, target_names=['fake', 'true']))
+        print(classification_report(y_true, y_pred, target_names=["fake", "true"]))
 
-        cm = confusion_matrix(y_true, y_pred, labels=['fake', 'true'])
+        cm = confusion_matrix(y_true, y_pred, labels=["fake", "true"])
         print(f"📉 CONFUSION MATRIX:")
         print(f"                 Predicted")
         print(f"                 fake    true")
@@ -258,6 +258,7 @@ def main():
         print(f"   Actual true   {cm[1][0]:<7} {cm[1][1]}")
     else:
         print("\n⚠️  No valid predictions to calculate classification metrics.")
+
 
 if __name__ == "__main__":
     main()
