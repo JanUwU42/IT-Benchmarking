@@ -8,7 +8,7 @@ from sklearn.metrics import classification_report, confusion_matrix, f1_score
 
 # Webhook URLs for different providers
 WEBHOOK_URLS = {
-    "ollama": "http://localhost:5678/webhook-test/d15a6547-dd1d-4031-b6fa-fe92165249eb",
+    "ollama": "http://localhost:5678/webhook/d15a6547-dd1d-4031-b6fa-fe92165249eb",
     "chatgpt": "http://localhost:5678/webhook/d15a6547-dd1d-4031-b6fa-fe92165249eb",
 }
 

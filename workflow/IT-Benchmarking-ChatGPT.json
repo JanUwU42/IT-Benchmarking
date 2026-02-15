@@ -1,5 +1,5 @@
 {
-  "name": "IT-Benchmarking",
+  "name": "IT-Benchmarking-ChatGPT",
   "nodes": [
     {
       "parameters": {
@@ -26,14 +26,14 @@
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 2.1,
       "position": [
-        -64,
-        112
+        416,
+        16
       ],
-      "id": "d8e03288-8aa0-4bd0-a285-087d4e497243",
+      "id": "abfd8804-7a6e-4de2-b390-83d08fd5f5bb",
       "name": "Message a model",
       "credentials": {
         "openAiApi": {
-          "id": "8v8rZztATRNHDKFt",
+          "id": "Va8dfPsHOpVexesz",
           "name": "OpenAi account"
         }
       }
@@ -48,10 +48,10 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        -672,
-        112
+        -192,
+        16
       ],
-      "id": "5f16d10b-681c-400b-bd7a-da17f90fa86a",
+      "id": "60db8952-a416-47b1-b9e8-c6387736f76c",
       "name": "Webhook",
       "webhookId": "d15a6547-dd1d-4031-b6fa-fe92165249eb"
     },
@@ -65,10 +65,10 @@
       "type": "@n8n/n8n-nodes-langchain.sentimentAnalysis",
       "typeVersion": 1.1,
       "position": [
-        -480,
-        96
+        0,
+        0
       ],
-      "id": "f0c39ea7-76e3-486b-878e-a45d8b6e128e",
+      "id": "1b0e9811-36c5-4208-a6b5-c6383d6b7a96",
       "name": "Sentiment Analysis"
     },
     {
@@ -85,14 +85,14 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.3,
       "position": [
-        -480,
-        336
+        0,
+        240
       ],
-      "id": "f74313aa-3a91-4e2e-baa3-a9c5e6b41087",
+      "id": "b04d9a89-165d-4c26-ab9f-60e2a025b9fc",
       "name": "OpenAI Chat Model",
       "credentials": {
         "openAiApi": {
-          "id": "8v8rZztATRNHDKFt",
+          "id": "Va8dfPsHOpVexesz",
           "name": "OpenAi account"
         }
       }
@@ -115,10 +115,10 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.5,
       "position": [
-        288,
-        112
+        768,
+        16
       ],
-      "id": "df6c6257-fa7d-4be6-8e87-6cd6b238ef9e",
+      "id": "d436db0a-7e10-422e-b152-be582829c344",
       "name": "Respond to Webhook",
       "onError": "continueErrorOutput"
     }
@@ -182,24 +182,19 @@
           }
         ]
       ]
-    },
-    "Respond to Webhook": {
-      "main": [
-        []
-      ]
     }
   },
-  "active": true,
+  "active": false,
   "settings": {
     "executionOrder": "v1",
     "binaryMode": "separate",
     "availableInMCP": false
   },
-  "versionId": "04af17a5-cb47-4faf-b4ea-25d6f9de64c1",
+  "versionId": "39ecce31-dcad-43c4-98f2-0c54722ff15c",
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "e59f4c46da85f7454069750a1e298d42b58cc6c7697569ca881968cbe14ff868"
+    "instanceId": "b2c7a58135d09153587f89ad2b82285996ae686033ab3769f262322d5caaa221"
   },
-  "id": "luezdwKuXTVvniSQBF1Ut",
+  "id": "nk0HKishGcsFzBjF",
   "tags": []
 }
