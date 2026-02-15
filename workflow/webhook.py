@@ -119,7 +119,14 @@ def parse_prediction(response_data):
         return None
 
     # Try common response field names
-    for field in ["prediction", "label", "result", "classification", "output"]:
+    for field in [
+        "prediction",
+        "label",
+        "result",
+        "classification",
+        "output",
+        "content",
+    ]:
         if field in response_data:
             value = str(response_data[field]).lower().strip()
             if value in ["fake", "false", "0"]:

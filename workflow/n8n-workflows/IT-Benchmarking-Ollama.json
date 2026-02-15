@@ -1,0 +1,189 @@
+{
+  "name": "IT-Benchmarking-Ollama",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "d15a6547-dd1d-4031-b6fa-fe92165249eb",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        864,
+        960
+      ],
+      "id": "b00a79d2-070b-4682-ac38-0e8db3e1a9bc",
+      "name": "Webhook",
+      "webhookId": "d15a6547-dd1d-4031-b6fa-fe92165249eb"
+    },
+    {
+      "parameters": {
+        "inputText": "={{ $json.body }}",
+        "options": {
+          "enableAutoFixing": true
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.sentimentAnalysis",
+      "typeVersion": 1.1,
+      "position": [
+        1056,
+        944
+      ],
+      "id": "7450d76e-e1ee-4549-a52e-766b9776e75f",
+      "name": "Sentiment Analysis"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "content-type",
+                "value": "application/json"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        1824,
+        960
+      ],
+      "id": "40b2fc76-e808-4f44-877a-99cfb5ef57e0",
+      "name": "Respond to Webhook",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "model": "gemma3:27b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmOllama",
+      "typeVersion": 1,
+      "position": [
+        1056,
+        1152
+      ],
+      "id": "10cefa53-227f-4f1c-814b-b1ea2b7a569c",
+      "name": "Ollama Model",
+      "credentials": {
+        "ollamaApi": {
+          "id": "HI2j5rNK6ly5Gv9j",
+          "name": "Ollama account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gemma3:12b",
+          "mode": "list",
+          "cachedResultName": "gemma3:12b"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Classify this headline as REAL or FAKE.\n\nHeadline: {{ $json.body.title }}\nText: {{ $json.body.text }}\n\nYou can use the sentiment score to help your decision: {{ $json.sentimentAnalysis.category }}\n\nAlso use the Websearch Tool to get more Information on the news.\n\nAnswer only with: REAL or FAKE."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.ollama",
+      "typeVersion": 1,
+      "position": [
+        1392,
+        960
+      ],
+      "id": "5dd5beec-2ce2-4481-bc84-4ac5bef7e7fb",
+      "name": "Message a model",
+      "credentials": {
+        "ollamaApi": {
+          "id": "HI2j5rNK6ly5Gv9j",
+          "name": "Ollama account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Sentiment Analysis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sentiment Analysis": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Sentiment Analysis",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "e46ebe47-c3cc-4211-a58d-fad83d3d4e29",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "b2c7a58135d09153587f89ad2b82285996ae686033ab3769f262322d5caaa221"
+  },
+  "id": "fdyq6Bp3kib97VD3",
+  "tags": []
+}
