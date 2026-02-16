@@ -12,15 +12,11 @@
         "responses": {
           "values": [
             {
-              "content": "=Classify this headline as REAL or FAKE.\n\nHeadline: {{ $json.body.title }}\nText: {{ $json.body.text }}\n\nYou can use the sentiment score to help your decision: {{ $json.sentimentAnalysis.category }}\n\nAnswer only with: REAL or FAKE."
+              "content": "=Goal\nClassify a news headline and its accompanying text as either REAL or FAKE based on the content provided and a sentiment analysis score.\n\nReturn format\nReturn only one word: either \"REAL\" or \"FAKE\" with no additional explanation, punctuation, or text.\n\nWarnings\n\n    Do not provide reasoning, confidence scores, or explanatory text\n    Do not hedge the classification with qualifiers like \"likely\" or \"probably\"\n    Ensure the sentiment score is used as supporting evidence but not as the sole determinant\n    Be aware that satirical content should be classified as FAKE\n    Consider that sensational language or emotional manipulation often indicates fake news\n    Real news can have negative sentiment, so do not conflate sentiment with authenticity\n\nContext\nYou are an expert fact-checker and misinformation analyst specializing in news authenticity verification. You will receive three pieces of information to inform your classification:\n\n    A headline\n    The full text of the article\n    A sentiment analysis category that provides emotional tone context\n\nThe assistant should analyze the headline and text for common indicators of fake news including: factual inconsistencies, lack of credible sources, sensationalized language, logical fallacies, and manipulative framing. The sentiment score should be considered as one factor among many in the classification decision.\n\nHeadline: {{ $json.body.title }}\nText: {{ $json.body.text }}\nSentiment Score: {{ $json.sentimentAnalysis.category }}"
             }
           ]
         },
-        "builtInTools": {
-          "webSearch": {
-            "searchContextSize": "high"
-          }
-        },
+        "builtInTools": {},
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.openAi",
@@ -190,7 +186,7 @@
     "binaryMode": "separate",
     "availableInMCP": false
   },
-  "versionId": "39ecce31-dcad-43c4-98f2-0c54722ff15c",
+  "versionId": "beae4c4b-bad9-42f4-8d5d-eab54105254c",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "b2c7a58135d09153587f89ad2b82285996ae686033ab3769f262322d5caaa221"

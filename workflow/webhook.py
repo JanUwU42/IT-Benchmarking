@@ -140,23 +140,25 @@ def parse_prediction(response_data):
 def main():
     args = parse_arguments()
 
-    # Set random seed if provided
+    # Set random seed (generate one if not provided)
     if args.seed is not None:
-        random.seed(args.seed)
+        seed = args.seed
+    else:
+        seed = random.randint(0, 2**32 - 1)
+    random.seed(seed)
 
     # Determine webhook URL
     webhook_url = args.url if args.url else WEBHOOK_URLS[args.provider]
 
     print(f"{'=' * 60}")
-    print(f"FAKE NEWS DETECTION BENCHMARK")
+    print("FAKE NEWS DETECTION BENCHMARK")
     print(f"{'=' * 60}")
     print(f"Provider:    {args.provider.upper()}")
     print(f"Webhook URL: {webhook_url}")
     print(f"Samples:     {args.samples}")
     print(f"Fake CSV:    {args.fake_csv}")
     print(f"True CSV:    {args.true_csv}")
-    if args.seed:
-        print(f"Random Seed: {args.seed}")
+    print(f"Random Seed: {seed}")
     print(f"{'=' * 60}\n")
 
     # Load both CSV files with labels

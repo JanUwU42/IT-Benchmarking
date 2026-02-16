@@ -6,6 +6,11 @@ services:
     container_name: ollama
     networks:
       - n8n-network
+    environment:
+      - OLLAMA_VULKAN=1
+    devices:
+      - /dev/kfd:/dev/kfd
+      - /dev/dri:/dev/dri
     volumes:
       - ollama_data:/root/.ollama
 

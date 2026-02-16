@@ -11,10 +11,10 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        864,
-        960
+        3088,
+        2128
       ],
-      "id": "b00a79d2-070b-4682-ac38-0e8db3e1a9bc",
+      "id": "b43b1f0a-309e-45df-91c1-f62102520e78",
       "name": "Webhook",
       "webhookId": "d15a6547-dd1d-4031-b6fa-fe92165249eb"
     },
@@ -28,10 +28,10 @@
       "type": "@n8n/n8n-nodes-langchain.sentimentAnalysis",
       "typeVersion": 1.1,
       "position": [
-        1056,
-        944
+        3280,
+        2112
       ],
-      "id": "7450d76e-e1ee-4549-a52e-766b9776e75f",
+      "id": "5bcf1fa4-fc82-4e92-9833-ddb67cdcdfde",
       "name": "Sentiment Analysis"
     },
     {
@@ -52,25 +52,25 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.5,
       "position": [
-        1824,
-        960
+        4048,
+        2128
       ],
-      "id": "40b2fc76-e808-4f44-877a-99cfb5ef57e0",
+      "id": "8bea1e62-ac2e-48b4-9fab-5f40133f9cd2",
       "name": "Respond to Webhook",
       "onError": "continueErrorOutput"
     },
     {
       "parameters": {
-        "model": "gemma3:27b",
+        "model": "gemma3:12b",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.lmOllama",
       "typeVersion": 1,
       "position": [
-        1056,
-        1152
+        3280,
+        2320
       ],
-      "id": "10cefa53-227f-4f1c-814b-b1ea2b7a569c",
+      "id": "21d3331e-0539-4d52-8109-8483de6d98b7",
       "name": "Ollama Model",
       "credentials": {
         "ollamaApi": {
@@ -90,7 +90,7 @@
         "messages": {
           "values": [
             {
-              "content": "=Classify this headline as REAL or FAKE.\n\nHeadline: {{ $json.body.title }}\nText: {{ $json.body.text }}\n\nYou can use the sentiment score to help your decision: {{ $json.sentimentAnalysis.category }}\n\nAlso use the Websearch Tool to get more Information on the news.\n\nAnswer only with: REAL or FAKE."
+              "content": "=Goal\nClassify a news headline and its accompanying text as either REAL or FAKE based on the content provided and a sentiment analysis score.\n\nReturn format\nReturn only one word: either \"REAL\" or \"FAKE\" with no additional explanation, punctuation, or text.\n\nWarnings\n\n    Do not provide reasoning, confidence scores, or explanatory text\n    Do not hedge the classification with qualifiers like \"likely\" or \"probably\"\n    Ensure the sentiment score is used as supporting evidence but not as the sole determinant\n    Be aware that satirical content should be classified as FAKE\n    Consider that sensational language or emotional manipulation often indicates fake news\n    Real news can have negative sentiment, so do not conflate sentiment with authenticity\n\nContext\nYou are an expert fact-checker and misinformation analyst specializing in news authenticity verification. You will receive three pieces of information to inform your classification:\n\n    A headline\n    The full text of the article\n    A sentiment analysis category that provides emotional tone context\n\nThe assistant should analyze the headline and text for common indicators of fake news including: factual inconsistencies, lack of credible sources, sensationalized language, logical fallacies, and manipulative framing. The sentiment score should be considered as one factor among many in the classification decision.\n\nHeadline: {{ $json.body.title }}\nText: {{ $json.body.text }}\nSentiment Score: {{ $json.sentimentAnalysis.category }}"
             }
           ]
         },
@@ -99,10 +99,10 @@
       "type": "@n8n/n8n-nodes-langchain.ollama",
       "typeVersion": 1,
       "position": [
-        1392,
-        960
+        3616,
+        2128
       ],
-      "id": "5dd5beec-2ce2-4481-bc84-4ac5bef7e7fb",
+      "id": "77a37006-108d-4d81-be77-6f2abe921fdb",
       "name": "Message a model",
       "credentials": {
         "ollamaApi": {
@@ -179,7 +179,7 @@
     "binaryMode": "separate",
     "availableInMCP": false
   },
-  "versionId": "e46ebe47-c3cc-4211-a58d-fad83d3d4e29",
+  "versionId": "28b51859-7e16-4438-8cf2-13ce9e8791c3",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "b2c7a58135d09153587f89ad2b82285996ae686033ab3769f262322d5caaa221"
