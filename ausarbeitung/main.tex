@@ -42,7 +42,7 @@
 \setlength\parindent{0pt}
 
 % Zeilenabstand nach paragraphs
-\setlength{\parskip}{10\baseline}
+\setlength{\parskip}{0.4\baselineskip}
 
 
 % \title{Inwiefern unterscheiden sich n8n-basierte Workflows mit ChatGPT-Agenten und Ollama-Agenten in der Genauigkeit und Effizienz bei der Erkennung von Fake News in Nachrichtenschlagzeilen?
@@ -141,7 +141,16 @@
     TODO
 
     \subsection{LLM}
-    TODO
+    Ein Large Language Model, kurz LLM, ist ein KI-Sprachmodell, das in zwei Phasen mit Hilfe von sehr großen Textmengen
+    trainiert wird. Das Ziel ist, die menschliche Sprache zu verstehen und zu erzeugen. Zunächst wird ein LLM
+    vortrainiert. Beim Vortraining wird die Textquelle in viele kleine Einheiten segmentiert. Diese Tokens können ganze
+    Wörter, Teile von Wörtern oder Zeichen sein. Diese Tokens werden durch ein Transformer-Netzwerk analysiert. Ein
+    Transformer-Netzwerk zeichnet sich durch einen Selbstbeobachtungs-Mechanismus aus, mit dem die KI gewichtete
+    Beziehungen unter den einzelnen Tokens erfassen kann.\footnote{\cite{strykerLlmsDefinition}.}
+
+    In der zweiten Phase folgt die Feinabstimmung. Das LLM wird dabei in einen bestimmten Kontext gesetzt.
+    Beispielsweise werden sämtliche Öffentliche Informationen zu einem Unternehmen bereitgestellt, um einen Beratungsbot
+    zu erstellen\footnote{\cite{strykerLlmsDefinition}.}
 
     \subsection{Ollama  \& Begrenzung eigene Hardware}
     \subsubsection{Ollama}
