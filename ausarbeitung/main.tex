@@ -152,6 +152,8 @@
     Beispielsweise werden sämtliche Öffentliche Informationen zu einem Unternehmen bereitgestellt, um einen Beratungsbot
     zu erstellen\footnote{\cite{strykerLlmsDefinition}.}
 
+    TODO: Parametrisches vs Non-Parametrisches Wissen, NLP, Warum ist ein LLM stark im Textverständnis
+
     \subsection{Ollama  \& Begrenzung eigene Hardware}
     \subsubsection{Ollama}
     Ollama ist ein Open-Source-Tool, das die lokale Bereitstellung und Ausführung von Large Language Models auf eigener Hardware ermöglicht. Das Tool  ist für den Einsatz in Umgebungen mit begrenzten Rechenressourcen sowie für den Offline-Betrieb ausgelegt und erlaubt die Ausführung leistungsfähiger Sprachmodelle ohne Anbindung an externe Cloud-Infrastrukturen. Da die Verarbeitung vollständig lokal erfolgt, verbleiben sämtliche Daten innerhalb der eigenen Systemumgebung. Auf diese Weise können Anforderungen an Datenschutz, Datensouveränität und Vertraulichkeit zuverlässig eingehalten
@@ -162,9 +164,24 @@
     Das Benchmarking wird auf einem Linux System mit dem "6.18.7-2-cachyos" Kernel mit 64 GB DDR5 RAM, einem AMD Ryzen 7 9800X3D Prozessor mit 16 Kernen und 5,2 GHz Taktrate, sowie einer AMD Radeon RX 9070 XT Grafikkarte durchgeführt. Dadurch sind wir in der Lage, relativ leistungsfähige LLMs lokal auszuführen, jedoch sind die Möglichkeiten im Vergleich zu Cloud-basierten eingeschränkt.
 
     \section{Methodisches Vorgehen}
-    \subsection{Auswahl von Kennzahlen zur Evaluierung des Workflows}
-    Für die Evaluierung von einem KI-Agenten Workflow stehen eine Vielzahl von Kennzahlen zur Verfügung.\footnote{\cite[S.6062]{KennzahlenAiAgents}.}
-    Es werden nur für diese Arbeit relevante Kennzahlen ausgewählt und betrachtet. Ziel der Auswahl der Kennzahlen ist
+    \subsection{Auswahl von Kennzahlen}
+    \subsubsection{Auswahl von Kennzahlen zur Unterstützung zur Fake-News Erkennung}
+    Für die Evaluierung von KI stehen eine Vielzahl von Kennzahlen zur Verfügung.\footnote{\cite[S.6062]{KennzahlenAiAgents}.}
+    Es werden nur für diese Arbeit relevante Kennzahlen ausgewählt und betrachtet. Es werden zwei Arten von Kennzahlen
+    ausgewählt. Zuerst werden potenzielle Indiktatoren zur Identifikation von Fake-News ausgewählt. Diese sollen die
+    LLMs bei der Entscheidungsfindung unterstützen. Danach werden Kennzahlen zur Evaluierung der Unterschiede zwischen
+    OpenAI und selbst-gehostete LLM Modelle ausgewählt.
+
+    Damit das LLM-Modell besser Fake-News erkennen kann, wird eine Sentiment-Analyse durchgeführt. Durch diese wird die
+    Emotionalität eines Texts bestimmt. Fake-News versucht über Emotionen die Aufmerksamkeit des Lesenden einzufangen. \footnote{\cite{ghanem-etal-2021-fakeflow}}
+    Emotionalität alleine ist kein Indikator, ob ein Text inhaltlich korrekt ist. Die inhaltliche Korrektheit muss
+    durch das parametrische Wissen des LLMs überprüft werden. Aus diesem Grund wird Chain-Of-Thought Prompting verwenden,
+    um das parametrische Wissen besser abrufen zu können. Außerdem werden dadurch die Halluzinationen des LLMs
+    reduziert. \footnote{\cite{wei2023chainofthoughtpromptingelicitsreasoning}.}
+
+    \subsubsection{Auswahl von Kennzahlen zur Evaluierung des Workflows}
+
+    Ziel der Auswahl der Kennzahlen ist
     es eine Vergleichsgrundlage
     zwischen einem lokalen KI-Agenten mit OLLAMA und einem von OpenAI herzustellen. Hinzu kommt, dass der Workflow als
     ganzes betrachtet wird und auf eine Praxistauglichkeit überprüft wird.
