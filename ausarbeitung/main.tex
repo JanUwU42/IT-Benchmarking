@@ -83,7 +83,6 @@
 
     \noindent
     \begin{tabular}{p{4cm}l}
-        WWW & World Wide Web \tabularnewline
         OLLAMA & Omni-Layer Learning Language Acquisition Model \tabularnewline
         KI & Künstliche Intelligenz \tabularnewline
         AI & Artifical intelligence (engl. Künstliche Intelligenz) \tabularnewline
@@ -129,16 +128,11 @@
     darauf aufbauende Fazit.
 
     \section{Technologische Grundlagen}
-    \subsection {n8n}
-    n8n ist eine Open-Source Workflow-Automatisierungsplattform, mit der digitale Prozesse automatisiert, verknüpft und gesteuert werden können. n8n verfolgt einen Low-Code/No-Code Ansatz, das heißt, dass Nutzende Workflows visuell erstellen können, ohne umfangreiche Programmierkenntnisse zu benötigen. \footnote{\cite{n8n-Workflow-Automation}.}
-
-    n8n bietet eine Vielzahl von vorgefertigten Integrationen (sogenannte "Nodes") für verschiedene Dienste und Anwendungen, darunter auch native Integrationen mit KI-Tools wie ChatGPT und Ollama. Wenn allerdings die vorgefertigten Nodes nicht ausreichen, bietet n8n die Möglichkeit JavaScript oder Python zu verwenden, um benutzerdefinierte Logiken zu implementieren oder auch eigene Nodes zu bauen. \footnote{\cite{n8n-docs}.}
 
     \subsection{AI-Benchmarking}
-    TODO
+    Bei AI-Benchmarking wird die Leistungsfähigkeit von Künstlichen-Intelligenzen in verschiedenen Kategorien mit standardisierten Tests systematisch gemessen und verglichen. Wichtig hierbei ist, dass unterschiedliche Modelle unter gleichen Bedingungen, beispielsweise gleicher Sample-Seed bei der Analyse von Datensätzen, geprüft werden, damit die Ergebnisse vergleichbar sind.\footcite{Benchmarking-AI-Models-in-Software-Engineering}
 
-    \subsection{KI-Agenten}
-    TODO
+    Wichtig bei AI-Benchmarking sind klar definierte Datensätze oder Aufgabenpools, festgelegte Metriken, wie F1-Score oder Latenzzeit, und ein dokumentiertes Testvorgehen, damit die Ergebnisse wiederholbar und nachvollziehbar sind.\footcite{Benchmarking-AI-Models-in-Software-Engineering}
 
     \subsection{LLM}
     Ein Large Language Model, kurz LLM, ist ein KI-Sprachmodell, das in zwei Phasen mit Hilfe von sehr großen Textmengen
@@ -152,9 +146,16 @@
     Beispielsweise werden sämtliche Öffentliche Informationen zu einem Unternehmen bereitgestellt, um einen Beratungsbot
     zu erstellen\footnote{\cite{strykerLlmsDefinition}.}
 
-    \subsection{Ollama  \& Begrenzung eigene Hardware}
+    \subsection {n8n}
+    n8n ist eine Open-Source Workflow-Automatisierungsplattform, mit der digitale Prozesse automatisiert, verknüpft und gesteuert werden können. n8n verfolgt einen Low-Code/No-Code Ansatz, das heißt, dass Nutzende Workflows visuell erstellen können, ohne umfangreiche Programmierkenntnisse zu benötigen. \footcite{n8n-Workflow-Automation}
+
+    n8n bietet eine Vielzahl von vorgefertigten Integrationen (sogenannte "Nodes") für verschiedene Dienste und Anwendungen, darunter auch native Integrationen mit KI-Tools wie ChatGPT und Ollama. Wenn allerdings die vorgefertigten Nodes nicht ausreichen, bietet n8n die Möglichkeit JavaScript oder Python zu verwenden, um benutzerdefinierte Logiken zu implementieren oder auch eigene Nodes zu bauen. Außerdem bietet n8n Webhooks an, um externe Ereignisse zu verarbeiten, Daten zu senden und eigene Anwendungen zu integrieren.\footcite{n8n-docs}
+
+    Neben einer vom n8n-Team bereitgestellten kostenpflichtigen Cloud-Variante kann die Plattform auch über Docker\footnote{Docker ist eine freie Software zur Isolierung von Anwendungen durch Containervirtualisierung} selbst gehosted werden um Kosten zu sparen und die Kontrolle über die eigenen Daten zu behalten.\footcite{n8n-docs}
+
+    \subsection{Ollama \& Begrenzung eigene Hardware}
     \subsubsection{Ollama}
-    Ollama ist ein Open-Source-Tool, das die lokale Bereitstellung und Ausführung von Large Language Models auf eigener Hardware ermöglicht. Das Tool  ist für den Einsatz in Umgebungen mit begrenzten Rechenressourcen sowie für den Offline-Betrieb ausgelegt und erlaubt die Ausführung leistungsfähiger Sprachmodelle ohne Anbindung an externe Cloud-Infrastrukturen. Da die Verarbeitung vollständig lokal erfolgt, verbleiben sämtliche Daten innerhalb der eigenen Systemumgebung. Auf diese Weise können Anforderungen an Datenschutz, Datensouveränität und Vertraulichkeit zuverlässig eingehalten
+    Ollama ist ein Open-Source-Tool, das die lokale Bereitstellung und Ausführung von Large Language Models auf eigener Hardware ermöglicht. Das Tool  ist für den Einsatz in Umgebungen mit begrenzten Rechenressourcen sowie für den Offline-Betrieb ausgelegt und erlaubt die Ausführung leistungsfähiger Sprachmodelle ohne Anbindung an externe Cloud-Infrastrukturen. Da die Verarbeitung vollständig lokal erfolgt, verbleiben sämtliche Daten innerhalb der eigenen Systemumgebung. Auf diese Weise können Anforderungen an Datenschutz, Datensouveränität und Vertraulichkeit zuverlässig eingehalten. \footcite{Ollama-Local-Models-Case-Study}
 
     \subsubsection{Begrenzung eigene Hardware}
     Die Leistungsfähigkeit der lokalen Ollama LLMs ist begrenzt durch die uns verfügbare Hardware. Insbesondere der verfügbare Arbeitsspeicher (RAM) und die Rechenleistung der CPU/GPU bestimmen, welche Modelle ausgeführt werden können.
