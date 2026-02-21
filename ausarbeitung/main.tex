@@ -5,6 +5,7 @@
 \usepackage{footmisc}
 \usepackage{microtype}
 \usepackage{hyperref}
+\usepackage{amsmath}
 
 
 \usepackage{helvet} % Set font to Arial
@@ -84,11 +85,19 @@
     \noindent
     \begin{tabular}{p{4cm}l}
         AI & Artifical intelligence (engl. Künstliche Intelligenz) \tabularnewline
+<<<<<<< jan/improvTechonologischeGrundlagen
         JSON & Javascript Object Notation \tabularnewline
         KI & Künstliche Intelligenz \tabularnewline
         LLM & Large Language Model \tabularnewline
         OLLAMA & Omni-Layer Learning Language Acquisition Model \tabularnewline
 
+=======
+        LLM & Large Language Model \tabularnewline
+        FN & False negative (engl. falsch-negativ) \tabularnewline
+        FP & False positive (engl. falsch-positiv) \tabularnewline
+        TN & True negative (engl. richtig negativ) \tabularnewline
+        TP & True positive (engl. richtig positiv) \tabularnewline
+>>>>>>> main
 
     \end{tabular}
 
@@ -129,7 +138,16 @@
     Use-Cases erläutert wird. Danach wird die Implementierung erklärt und im Anschluss folgt die Auswertung und das
     darauf aufbauende Fazit.
 
+
     \section{Technologische Grundlagen}
+<<<<<<< jan/improvTechonologischeGrundlagen
+=======
+
+    \subsection {n8n}
+    n8n ist eine Open-Source Workflow-Automatisierungsplattform, mit der digitale Prozesse automatisiert, verknüpft und gesteuert werden können. n8n verfolgt einen Low-Code/No-Code Ansatz, das heißt, dass Nutzende Workflows visuell erstellen können, ohne umfangreiche Programmierkenntnisse zu benötigen. \footnote{\cite{n8n-Workflow-Automation}.}
+
+    n8n bietet eine Vielzahl von vorgefertigten Integrationen (sogenannte "Nodes") für verschiedene Dienste und Anwendungen, darunter auch native Integrationen mit KI-Tools wie ChatGPT und Ollama. Wenn allerdings die vorgefertigten Nodes nicht ausreichen, bietet n8n die Möglichkeit JavaScript oder Python zu verwenden, um benutzerdefinierte Logiken zu implementieren oder auch eigene Nodes zu bauen. \footnote{\cite{n8n-docs}.}
+>>>>>>> main
 
     \subsection{AI-Benchmarking}
     Bei AI-Benchmarking wird die Leistungsfähigkeit von Künstlichen-Intelligenzen in verschiedenen Kategorien mit standardisierten Tests systematisch gemessen und verglichen. Wichtig hierbei ist, dass unterschiedliche Modelle unter gleichen Bedingungen, beispielsweise gleicher Sample-Seed bei der Analyse von Datensätzen, geprüft werden, damit die Ergebnisse vergleichbar sind.\footcite{Benchmarking-AI-Models-in-Software-Engineering}
@@ -148,6 +166,7 @@
     Beispielsweise werden sämtliche Öffentliche Informationen zu einem Unternehmen bereitgestellt, um einen Beratungsbot
     zu erstellen\footnote{\cite{strykerLlmsDefinition}.}
 
+<<<<<<< jan/improvTechonologischeGrundlagen
     \subsection {n8n}
     n8n ist eine Open-Source Workflow-Automatisierungsplattform, mit der digitale Prozesse automatisiert, verknüpft und gesteuert werden können. n8n verfolgt einen Low-Code/No-Code Ansatz, das heißt, dass Nutzende Workflows visuell erstellen können, ohne umfangreiche Programmierkenntnisse zu benötigen. \footcite{n8n-Workflow-Automation}
 
@@ -158,22 +177,48 @@
     \subsection{Ollama \& Begrenzung eigene Hardware}
     \subsubsection{Ollama}
     Ollama ist ein Open-Source-Tool, das die lokale Bereitstellung und Ausführung von Large Language Models auf eigener Hardware ermöglicht. Das Tool  ist für den Einsatz in Umgebungen mit begrenzten Rechenressourcen sowie für den Offline-Betrieb ausgelegt und erlaubt die Ausführung leistungsfähiger Sprachmodelle ohne Anbindung an externe Cloud-Infrastrukturen. Da die Verarbeitung vollständig lokal erfolgt, verbleiben sämtliche Daten innerhalb der eigenen Systemumgebung. Auf diese Weise können Anforderungen an Datenschutz, Datensouveränität und Vertraulichkeit zuverlässig eingehalten. \footcite{Ollama-Local-Models-Case-Study}
+=======
+    \textbf{TODO:} Parametrisches vs Non-Parametrisches Wissen, NLP, Warum ist ein LLM stark im Textverständnis
+
+    \subsection{Ollama  \& Begrenzung eigene Hardware}
+
+    \subsubsection{Ollama}
+    Ollama ist ein Open-Source-Tool, das die lokale Bereitstellung und Ausführung von Large Language Models auf eigener Hardware ermöglicht. Das Tool ist für den Einsatz in Umgebungen mit begrenzten Rechenressourcen sowie für den Offline-Betrieb ausgelegt und erlaubt die Ausführung leistungsfähiger Sprachmodelle ohne Anbindung an externe Cloud-Infrastrukturen. Da die Verarbeitung vollständig lokal erfolgt, verbleiben sämtliche Daten innerhalb der eigenen Systemumgebung. Auf diese Weise können Anforderungen an Datenschutz, Datensouveränität und Vertraulichkeit zuverlässig eingehalten
+>>>>>>> main
 
     \subsubsection{Begrenzung eigene Hardware}
     Die Leistungsfähigkeit der lokalen Ollama LLMs ist begrenzt durch die uns verfügbare Hardware. Insbesondere der verfügbare Arbeitsspeicher (RAM) und die Rechenleistung der CPU/GPU bestimmen, welche Modelle ausgeführt werden können.
 
     Das Benchmarking wird auf einem Linux System mit dem "6.18.7-2-cachyos" Kernel mit 64 GB DDR5 RAM, einem AMD Ryzen 7 9800X3D Prozessor mit 16 Kernen und 5,2 GHz Taktrate, sowie einer AMD Radeon RX 9070 XT Grafikkarte durchgeführt. Dadurch sind wir in der Lage, relativ leistungsfähige LLMs lokal auszuführen, jedoch sind die Möglichkeiten im Vergleich zu Cloud-basierten eingeschränkt.
 
-    \section{Methodisches Vorgehen}
-    \subsection{Auswahl von Kennzahlen zur Evaluierung des Workflows}
-    Für die Evaluierung von einem KI-Agenten Workflow stehen eine Vielzahl von Kennzahlen zur Verfügung.\footnote{\cite[S.6062]{KennzahlenAiAgents}.}
-    Es werden nur für diese Arbeit relevante Kennzahlen ausgewählt und betrachtet. Ziel der Auswahl der Kennzahlen ist
-    es eine Vergleichsgrundlage
-    zwischen einem lokalen KI-Agenten mit OLLAMA und einem von OpenAI herzustellen. Hinzu kommt, dass der Workflow als
-    ganzes betrachtet wird und auf eine Praxistauglichkeit überprüft wird.
-    \newline
 
-    Der KI-Agent wird für diese Arbeit in zwei Dimensionen evaluiert:
+    \section{Methodisches Vorgehen}
+
+    \subsection{Auswahl von Kennzahlen}
+
+    \subsubsection{Auswahl von Kennzahlen zur Unterstützung der Fake-News Erkennung}
+    Für die Evaluierung von KI stehen eine Vielzahl von Kennzahlen zur Verfügung.\footnote{\cite[S.6062]{KennzahlenAiAgents}.}
+    Es werden nur für diese Arbeit relevante Kennzahlen ausgewählt und betrachtet. Es werden zwei Arten von Kennzahlen
+    ausgewählt. Zuerst werden potenzielle Indiktatoren zur Identifikation von Fake-News ausgewählt. Diese sollen die
+    LLMs bei der Entscheidungsfindung unterstützen. Danach werden Kennzahlen zur Evaluierung der Unterschiede zwischen
+    OpenAI und selbst-gehostete LLM Modelle ausgewählt.
+
+    Damit das LLM-Modell besser Fake-News erkennen kann, wird eine Sentiment-Analyse durchgeführt. Durch diese wird die
+    Emotionalität eines Texts bestimmt. Fake-News versucht über Emotionen die Aufmerksamkeit des Lesenden einzufangen. \footnote{\cite{ghanem-etal-2021-fakeflow}}
+    Emotionalität alleine ist kein Indikator, ob ein Text inhaltlich korrekt ist. Die inhaltliche Korrektheit muss
+    durch das parametrische Wissen des LLMs überprüft werden. Aus diesem Grund wird Chain-Of-Thought Prompting verwenden,
+    um das parametrische Wissen besser abrufen zu können. Außerdem werden dadurch die Halluzinationen des LLMs
+    reduziert. \footnote{\cite{wei2023chainofthoughtpromptingelicitsreasoning}.}
+    Damit diese Arbeit nicht ein zu hohes Komplexitätsniveau erreicht, wird nur ein Indikator bzw. Feature zur Fake-News Erkennung
+    verwendet. Es ist anzumerken, dass es ein Vielzahl von verschiedenen Indikatoren und Features gibt, welche bei der
+    Erkennung unterstützen können.\footnote{\cite{FakeNewsDetectionDataMining}.}
+
+    \subsubsection{Auswahl von Kennzahlen zur Evaluierung des Workflows}
+    Um die angestrebte Evaluierungsgrundlage zu schaffen, unterteilt sich die Analyse in zwei Ebenen.
+    Zum einen wird der Workflow in seiner Gesamtheit untersucht, zum anderen erfolgt eine isolierte Betrachtung
+    des LLMs im Workflow.
+
+    Das LLM wird für diese Arbeit in zwei Dimensionen evaluiert:
     \begin{enumerate}
         \item \textbf{Outputqualität:}
         Effektivität der Aufgabenerfüllung
@@ -181,30 +226,41 @@
         Ressourceneinsatz und Geschwindigkeit
     \end{enumerate}
 
-    Einige Metriken können bei der Evaluierung von KI-Agenten durch eine Schritt-für-Schrittauswertung
-    zu oberflächliche und ungenaue Auswertungen führen. Die KI-Agenten können für die gleiche Problemstellung unterschiedliche
-    Lösungswege durchführen, welche zum gleichen Ergebniss führen können.  Deshalb wird für die Methodikauswahl die
-    Vorgehensweise von \cite[S. 6065ff.]{KennzahlenAiAgents} verwendet. Die Autoren schlagen vor, dass man sich nur die korrekten Schritte
-    in der relativen Folge anschaut und diese zur Auswertung verwendet, solange die gleiche relative Schrittreihenfolge
-    eingehalten wird.
-    Die inkorrekten Schritte werden nicht betrachtet.
-    Um für die Praxistauglichkeit eine fundierte Aussage treffen zu können, muss in der Outputqualität die Evaluierung
-    der Prozessstabilität (syntaktische Korrektheit) und die inhaltliche Korrektheit (semantische Korrektheit) möglich sein.
-    Das wird für diese Arbeit durch die folgenden Metriken definiert: \footnote{\cite[S. 6065f.]{KennzahlenAiAgents}}
+    Für die Bestimmung der Outputqualität werden für diese Arbeit gängige Kennzahlen für KI Modelle herangezogen.\footnote{\cite[683]{ghanem-etal-2021-fakeflow}.}
+    Des Weiteren ist hier eine Betrachtung der Prozessstabilität notwendig, um im Nachgang eine fundierte Entscheidung zur
+    Praxistauglichkeit treffen zu können.
 
+    \textbf{Accuracy (Treffgenauigkeit):}
+    Die Accuracy dient als primärer Indikator für die globale Korrektheit der Klassifizierung über den gesamten Testdatensatz.
+    Sie gibt den Anteil der korrekt eingestuften Nachrichten an der Gesamtmenge an:
+    \[ \text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN} \]
+    \textbf{Variablen:}
     \begin{itemize}
-        \item \textbf{Task Completion Ratio:}
-        Diese Kennzahl beschreibt den prozentualen Anteil der Aufgaben, die der Agent technisch erfolgreich zu einem Abschluss gebracht hat.
-
-        \item \textbf{Invalid Format:}
-        Die Häufigkeit, mit der die Ausgabe des Modells nicht dem gefordertem Schema entspricht.
-
-        \item \textbf{Invalid Action:}
-        Die Häufigkeit von Fehlversuche des Agenten, wie etwa den Aufruf nicht existenter Tools oder die Verwendung falscher Parameter.
-
-        \item \textbf{F1-Score:}
-        Das harmonische Mittel von Präzision und Recall, um die Zuverlässigkeit eines Modells bei Klassifizierungsaufgaben präzise zu bewerten
+        \item \textbf{TP (True Positives):} Korrekt als Fake-News klassifizierte Falschmeldungen.
+        \item \textbf{TN (True Negatives):} Korrekt als wahrheitsgemäß klassifizierte echte Nachrichten.
+        \item \textbf{FP (False Positives):} Fälschlicherweise als Fake-News klassifizierte echte Nachrichten.
+        \item \textbf{FN (False Negatives):} Fälschlicherweise als wahrheitsgemäß klassifizierte Fake-News.
     \end{itemize}
+
+
+    \textbf{F1-Score:}
+    Der F1-Score ist das harmonische Mittel aus Precision und Recall. Er bietet eine robustere Metrik für
+    unausgeglichene Datensätze, da er sowohl Fehlalarme (FP) als auch verpasste Fälle (FN) gewichtet berücksichtigt.\newline
+    \[ F_1 = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}} \]
+    \textit{Precision (Präzision):} Der Anteil der korrekt als Fake News erkannten Fälle an allen als Fake News klassifizierten Meldungen ($\frac{TP}{TP + FP}$). \newline
+    \textit{Recall (Trefferquote):} Der Anteil der korrekt erkannten Fake News an der tatsächlichen Gesamtmenge aller vorhandenen Falschmeldungen ($\frac{TP}{TP + FN}$).
+    \newline
+    Um eine bessere Auswertung zu bekommen, werden vom F1-Score die folgenden Varianten verwendet. \newline
+    \textbf{Varianten des F1-Score:}
+    \begin{itemize}
+        \item \textbf{F1-Fake:} Spezifische Performance-Messung nur für die Erkennung von Fake News.
+        \item \textbf{F1-Macro:} Ungewichteter Mittelwert der Klassen.
+        \item \textbf{F1-Weighted:} Mittelwert beider Klassen, gewichtet nach deren Anteil im Datensatz.
+    \end{itemize}
+    \textbf{Invalid Response format (Falsches Antwortformat):}
+    Misst den Prozentsatz der Antworten, im falschen Antwortformat vom Workflow zurückgegeben werden.
+    \[ \text{Invalid Response format rate} = \frac{\text{Anzahl ungültiger Antworten}}{\text{Gesamtanzahl der Anfragen}} \cdot 100\% \]
+
 
 
 
@@ -217,10 +273,6 @@
     \begin{itemize}
         \item \textbf{End-to-End Latency:\footnote{\cite[S. 2.]{End2EndLatency}}}
         Die Gesamtdauer, die der Workflow von Eingabe der Daten bis zum finalen Ergebniss benötigt.
-        \item \textbf{Tokens per Second:\footnote{\cite[S. 2.]{erdil2025inferenceeconomicslanguagemodels}}}
-        Die Generierungsgeschwindigkeit des Modells.
-        \item \textbf{Token usage:\footnote{\cite[S. 9.]{gendreaudistler2025automatinghighenergyphysics}}}
-        Die Gesamtzahl an verbrauchten Tokens für einen Input-Output Durchlauf.
         \item \textbf{Kosten pro Workflowdurchlauf:}
         Die Kosten für die Durchführung einer Überprüfung
     \end{itemize}
@@ -229,21 +281,36 @@
     auch die Standardabweichung angegeben.
 
     \subsection{Auwsahl eines Datensatzes}
-    Zum Testen des Workflows wird ein öffentlicher Datensatz von Kaggle\footnote{\url{https://www.kaggle.com}.} ausgewählt. Die
-    Qualität des Datensatzes ist von entscheidender Relevanz. Um eine realistische Evaluation machen zu können müssen
+    Zum Testen des Workflows wird ein öffentlicher Datensatz von Kaggle\footnote{\url{https://www.kaggle.com} (letzer Aufruf: 21.02.2026).} ausgewählt.
+    Kaggle ist eine der bekanntesten und etabliertesten Plattformen im Bereich Data Science. \footnote{\cite{KaggleUseCase} (letzer Aufruf: 21.02.2026).}
+    Die Qualität des Datensatzes ist von entscheidender Relevanz. Um eine realistische Evaluation machen zu können müssen
     die Daten korrekt und in ausreichender Menge verfügbar sein. Außerdem muss eine Zuordnung zu Wahr oder Falsch eindeutig machbar sein.
-    Ferner muss eine eindeutige zeitliche Einordnung möglich sein, weil lokale OLLAMA Modelle meist mit veralteten Daten trainiert sind und
-    somit das KI-Modell von OpenAI einen Vorteil hat. Die Qualität des Datensatzes wird direkt von Kaggle bestimmt. Es gibt
+    Ferner muss eine eindeutige zeitliche Einordnung möglich sein, damit das parametrische Wissen vom LLM abgefragt werden kann.
+    Die Qualität des Datensatzes wird direkt von Kaggle bestimmt. Es gibt
     einen Usability Score, welcher unter anderem das die Vorgehensweise und Quellen für die Erstellung des Datensatzes überprüft.
     Nichtsdestotrotz muss der Herausgebende des Datensatzes überprüft werden und auf die Vertrauenswürdigkeit überprüft werden.
     \newline
-    Für diese Arbeit wurde der folgende \href{https://www.kaggle.com/datasets/bhavikjikadara/fake-news-detection}{Datensatz} von Bhavik Jikadara verwendet.
-
+    Für diese Arbeit wurde der folgende Datensatz\footnote{\url{https://www.kaggle.com/datasets/bhavikjikadara/fake-news-detection} (letzer Aufruf: 21.02.2026).} von Bhavik Jikadara verwendet.
 
     \subsection{Versuchsaufbau}
-     Hier beschreiben, wie Daten in n8n reinkommen.
-     Lokale Hardware Limitation , also Stichproben durchführen.
-     Abstrahiertes Prozessdiagramm erstellen
+
+    Die methodische Umsetzung dieser Arbeit basiert auf einem abstrakten Prozessmodell (siehe Abbildung \ref{fig:diagramm1}),
+    welches die prototypische Implementierung strukturiert. Den Kern des Versuchsaufbaus bildet die Automatisierungsplattform n8n,
+    über welche die Anfragen an die LLMs gesteuert werden. Die Initiierung der Workflows erfolgt über ein dediziertes Skript.
+    Zusätzlich übernimmt das Skript die Generierung der Stichprobe sowie die Berechnung der relevanten Kennzahlen.
+
+    Um einen korrekten Vergleich der verschiedenen Workflows zu gewährleisten, wird durch die Definition eines festen Seeds
+    für den Pseudozufallszahlengenerator sichergestellt. Dadurch können identische Stichproben genommen werden.
+    Die Infrastruktur wird mittels Docker-Containern (n8n und Ollama) realisiert. Diese Containerisierung garantiert eine
+    isolierte, kontrollierte Testumgebung und stellt die vollständige Reproduzierbarkeit des Versuchsaufbaus sowie der Ergebnisse für Dritte sicherstellt.
+
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth]{img/it-bechmarking-wf}
+        \caption{Abstraktes Prozessdiagramm}
+        \label{fig:diagramm1}
+    \end{figure}
 
 
     \section{Prototypische Implementierung}
