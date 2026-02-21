@@ -83,10 +83,12 @@
 
     \noindent
     \begin{tabular}{p{4cm}l}
-        OLLAMA & Omni-Layer Learning Language Acquisition Model \tabularnewline
-        KI & Künstliche Intelligenz \tabularnewline
         AI & Artifical intelligence (engl. Künstliche Intelligenz) \tabularnewline
-        LLM & Large Language Model
+        JSON & Javascript Object Notation \tabularnewline
+        KI & Künstliche Intelligenz \tabularnewline
+        LLM & Large Language Model \tabularnewline
+        OLLAMA & Omni-Layer Learning Language Acquisition Model \tabularnewline
+
 
     \end{tabular}
 
@@ -245,8 +247,40 @@
 
 
     \section{Prototypische Implementierung}
-    Die prototypische Implementierung erfolgt anhand der theoretischen Grundlagen, die in dem vorherigen Kapitel beschrieben wurden.
 
+    \subsection{Aufbau der Testumgebung}
+    Für den Benchmark wurde eine containerisierte Testumgebung aufgebaut. Hierfür haben wir eine Docker Compose Datei \footnote{Docker Compose ist ein Werkzeug zur Definition und zum gleichzeitigen Start mehrerer Docker Services über eine zentrale Konfigurationsdatei.} erstellt, mit der Sowohl n8n als auch Ollama lokal gestartet werden und sich ein Docker-Netzwerk teilen. Die Docker-Compose-Datei ist im GitHub-Repository dieser Ausarbeitung unter \url{https://github.com/JanUwU42/IT-Benchmarking/tree/main/workflow} abrufbar.
+
+    \subsection{n8n Workflow mit ChatGPT}
+    Zunächst wurde ein Workflow in n8n implementiert. Dieser beginnt mit einer Webhook-Node, die als HTTP-Endpunkt fungiert und kontinuierlich auf eingehende Requests wartet. Sobald eine HTTP-Request eingeht, wird der enthaltene JSON-Body im Workflow weiterverarbeitet.
+
+    Der JSON-Body enthält eine Nachrichtenschlagzeile und den dazugehörigen Nachrichtentext. Diese Daten werden zunächst an eine Sentiment-Analysis-Node gesendet,  an die ein AI-Modell, in diesem Fall ChatGPT-4o, geknüpft ist, was den Text analysiert und einen Sentiment-Score ermittelt. Dieser Score wird daraufhin, zusätzlich zu den ursprünglichen JSON-Daten, weitergeleitet an eine Message-a-Model-Node. Für diese Node ist ebenfalls das OpenAI Modell ChatGPT-4o konfiguriert. Die gesammelten Informationen werden nun inklusive eines strukturierten Prompt\footnote{Der Prompt ist ebenfalls im oben genanten GitHub-Repository zu finden} an das Modell gesendet.
+
+    Das Modell analysiert daraufhin die Nachrichtenschlagzeile und Nachricht hinsichtlich ihres Wahrheitsgehaltes. Die Antwort des Modells wird abschließend über die Respond-to-Webhook-Node an den ursprünglichen Aufrufer zurückgesendet.
+
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=\textwidth]{img/ChatGPT-n8n-Workflow.png}
+        \caption{n8n Workflow mit ChatGPT Nodes}
+        \label{fig:chatgpt-workflow}
+    \end{figure}
+
+    \subsection{Automatisierte Auswertung mit Python}
+    Zur automatisierten Durchführung des Benchmarks wurde ein Python-Skript\footnote{Das Skript ist hier zu finden: \url{https://github.com/JanUwU42/IT-Benchmarking/blob/main/workflow/webhook.py}} implementiert. Dieses Skript lädt eine frei wählbare Stichprobengröße aus den True- und Fake-News-CSV-Datensätzen und extrahiert jeweils die Schlagzeile und den Nachrichtentext. Daraufhin sendet es diese Daten als JSON an den n8n-Webhook, empfängt, sobald der Workflow durchgelaufen ist, die Antwort des Sprachmodells und vergleicht diese mit der Ground-Truth aus dem CSV-Datensatz.
+
+    Nachdem alle Samples durchgelaufen sind werden die Metriken, wie F1-Score und Latenz, berechnet und im Terminal ausgegeben.
+
+    \subsection{n8n Workflow mit Ollama}
+    Für den Vergleich mit einem lokal ausgeführten LLM wurde der identische n8n-Workflow erneut implementiert. Der einzige Unterschied besteht darin, dass die OpenAI-Nodes durch Ollama-Nodes ersetzt wurden.
+
+    Als lokales Modell wurde Gemma3:12b eingesetzt. Dieses Modell wurde unter Berücksichtigung der verfügbaren Hardware Ressourcen gewählt, da es stabil mit den 16GB VRAM der AMD Radeon RX 9070XT laufen kann und trotzdem leistungsstark ist.
+
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=\textwidth]{img/Ollama-n8n-Workflow.png}
+        \caption{n8n Workflow mit Ollama Nodes}
+        \label{fig:ollama-workflow}
+    \end{figure}
 
     \section{Auswertung}
     Hier kommt die Beschreibung und Auswertung.

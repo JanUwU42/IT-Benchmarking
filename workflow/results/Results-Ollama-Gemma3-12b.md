@@ -45,7 +45,9 @@ Sending 100 samples to webhook...
 [32/100] ✓ Actual: true, Predicted: true, Latency: 19566.48ms
 [33/100] ✓ Actual: fake, Predicted: fake, Latency: 22206.60ms
 [34/100] ✓ Actual: fake, Predicted: fake, Latency: 14285.34ms
-[35/100] ✓ Actual: true, Predicted: true, Latency: 11706.47ms                                                                                      [37/100] ✗ Actual: fake, Predicted: true, Latency: 13743.93mss
+[35/100] ✓ Actual: true, Predicted: true, Latency: 11706.47ms                                                                                      
+[36/100] ✓ Actual: fake, Predicted: fake, Latency: 13743.93ms
+[37/100] ✗ Actual: fake, Predicted: true, Latency: 13743.93ms
 [38/100] ✓ Actual: true, Predicted: true, Latency: 12319.61ms
 [39/100] ✓ Actual: fake, Predicted: fake, Latency: 13717.97ms
 [40/100] ✓ Actual: fake, Predicted: fake, Latency: 12337.18ms
