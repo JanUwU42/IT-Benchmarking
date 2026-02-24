@@ -6,6 +6,9 @@
 \usepackage{microtype}
 \usepackage{hyperref}
 \usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage[all]{hypcap}
 
 
 \usepackage{helvet} % Set font to Arial
@@ -137,7 +140,7 @@
     \section{Technologische Grundlagen}
 
     \subsection{AI-Benchmarking}
-    Bei AI-Benchmarking wird die Leistungsfähigkeit von Künstlichen-Intelligenzen in verschiedenen Kategorien mit standardisierten Tests systematisch gemessen und verglichen. Wichtig hierbei ist, dass unterschiedliche Modelle unter gleichen Bedingungen, beispielsweise gleicher Sample-Seed bei der Analyse von Datensätzen, geprüft werden, damit die Ergebnisse vergleichbar sind.\footcite{Benchmarking-AI-Models-in-Software-Engineering}
+    Bei AI-Benchmarking wird die Leistungsfähigkeit von Künstlichen-Intelligenzen in verschiedenen Kategorien mit standardisierten Tests systematisch gemessen und verglichen. Wichtig hierbei ist, dass unterschiedliche Modelle unter gleichen Bedingungen, beispielsweise gleicher Sample-Seed bei der Analyse von Datensätzen, geprüft werden, damit die Ergebnisse vergleichbar sind.\footcite[5]{Benchmarking-AI-Models-in-Software-Engineering}
 
     Wichtig bei AI-Benchmarking sind klar definierte Datensätze oder Aufgabenpools, festgelegte Metriken, wie F1-Score oder Latenzzeit, und ein dokumentiertes Testvorgehen, damit die Ergebnisse wiederholbar und nachvollziehbar sind.\footcite{Benchmarking-AI-Models-in-Software-Engineering}
 
@@ -163,13 +166,14 @@
     Neben einer vom n8n-Team bereitgestellten kostenpflichtigen Cloud-Variante kann die Plattform auch über Docker\footnote{Docker ist eine freie Software zur Isolierung von Anwendungen durch Containervirtualisierung} selbst gehosted werden um Kosten zu sparen und die Kontrolle über die eigenen Daten zu behalten.\footcite{n8n-docs}
 
     \subsection{Ollama \& Begrenzung eigene Hardware}
+
     \subsubsection{Ollama}
     Ollama ist ein Open-Source-Tool, das die lokale Bereitstellung und Ausführung von Large Language Models auf eigener Hardware ermöglicht. Das Tool ist für den Einsatz in Umgebungen mit begrenzten Rechenressourcen sowie für den Offline-Betrieb ausgelegt und erlaubt die Ausführung leistungsfähiger Sprachmodelle ohne Anbindung an externe Cloud-Infrastrukturen. Da die Verarbeitung vollständig lokal erfolgt, verbleiben sämtliche Daten innerhalb der eigenen Systemumgebung. Auf diese Weise können Anforderungen an Datenschutz, Datensouveränität und Vertraulichkeit zuverlässig eingehalten. \footcite{Ollama-Local-Models-Case-Study}
 
     \subsubsection{Begrenzung eigene Hardware}
     Die Leistungsfähigkeit der lokalen Ollama LLMs ist begrenzt durch die uns verfügbare Hardware. Insbesondere der verfügbare Arbeitsspeicher (RAM) und die Rechenleistung der CPU/GPU bestimmen, welche Modelle ausgeführt werden können.
 
-    Das Benchmarking wird auf einem Linux System mit dem "6.18.7-2-cachyos" Kernel mit 64 GB DDR5 RAM, einem AMD Ryzen 7 9800X3D Prozessor mit 16 Kernen und 5,2 GHz Taktrate, sowie einer AMD Radeon RX 9070 XT Grafikkarte durchgeführt. Dadurch sind wir in der Lage, relativ leistungsfähige LLMs lokal auszuführen, jedoch sind die Möglichkeiten im Vergleich zu Cloud-basierten eingeschränkt.
+    Das Benchmarking wird auf einem Linux System mit dem "6.18.7-2-cachyos"-Kernel mit 64 GB DDR5 RAM, einem AMD Ryzen 7 9800X3D Prozessor mit 16 Kernen und 5,2 GHz Taktrate, sowie einer AMD Radeon RX 9070 XT Grafikkarte durchgeführt. Dadurch sind wir in der Lage, relativ leistungsfähige LLMs lokal auszuführen, jedoch sind die Möglichkeiten im Vergleich zu Cloud-basierten eingeschränkt.
 
 
     \section{Methodisches Vorgehen}
@@ -186,14 +190,12 @@
     Damit das LLM-Modell besser Fake-News erkennen kann, wird eine Sentiment-Analyse durchgeführt. Durch diese wird die
     Emotionalität eines Texts bestimmt. Fake-News versucht über Emotionen die Aufmerksamkeit des Lesenden einzufangen. \footnote{\cite{ghanem-etal-2021-fakeflow}}
     Emotionalität alleine ist kein Indikator, ob ein Text inhaltlich korrekt ist. Die inhaltliche Korrektheit muss
-    durch das parametrische Wissen des LLMs überprüft werden. Aus diesem Grund wird Chain-Of-Thought Prompting verwenden,
-    um das parametrische Wissen besser abrufen zu können. Außerdem werden dadurch die Halluzinationen des LLMs
-    reduziert. \footnote{\cite{wei2023chainofthoughtpromptingelicitsreasoning}.}
+    durch das parametrische Wissen des LLMs überprüft werden. Aus diesem Grund spielt der Prompt eine entscheide Rolle.\footcite{Prompt}
     Damit diese Arbeit nicht ein zu hohes Komplexitätsniveau erreicht, wird nur ein Indikator bzw. Feature zur Fake-News Erkennung
     verwendet. Es ist anzumerken, dass es ein Vielzahl von verschiedenen Indikatoren und Features gibt, welche bei der
     Erkennung unterstützen können.\footnote{\cite{FakeNewsDetectionDataMining}.}
 
-    \subsubsection{Auswahl von Kennzahlen zur Evaluierung des Workflows}
+    \subsubsection{Auswahl von Kennzahlen zur Evaluierung des Workflows} \label{chap:Metrics}
     Um die angestrebte Evaluierungsgrundlage zu schaffen, unterteilt sich die Analyse in zwei Ebenen.
     Zum einen wird der Workflow in seiner Gesamtheit untersucht, zum anderen erfolgt eine isolierte Betrachtung
     des LLMs im Workflow.
@@ -284,6 +286,7 @@
     Die Infrastruktur wird mittels Docker-Containern (n8n und Ollama) realisiert. Diese Containerisierung garantiert eine
     isolierte, kontrollierte Testumgebung und stellt die vollständige Reproduzierbarkeit des Versuchsaufbaus sowie der Ergebnisse für Dritte sicherstellt.
 
+    Es wird das ChatGPT-4o:latest Modell von OpenAI sowie Gemma3:12b für Ollama verwendet.
 
     \begin{figure}[h]
         \centering
@@ -329,10 +332,88 @@
         \label{fig:ollama-workflow}
     \end{figure}
 
+
     \section{Auswertung}
-    Hier kommt die Beschreibung und Auswertung.
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{lrr}
+            \toprule
+            \textbf{Metrik}                       & \textbf{ChatGPT-4o} & \textbf{Ollama (Gemma3:12b)} \\
+            \midrule
+            Durchschn. End-to-End Latency         & 2638,81\,ms      & 15581,79\,ms    \\
+            End-to-End Latency Standardabweichung & 576,92\,ms       & 4045,95\,ms     \\
+            Accuracy                              & 94,0\,\%         & 91,0\,\%        \\
+            F1-Score (fake)                       & 0,9412           & 0,9091          \\
+            F1-Score (weighted)                   & 0,9401           & 0,9099          \\
+            F1-Score (macro)                      & 0,9400           & 0,9100          \\
+            Invalid Responses                     & 0                & 0               \\
+            \bottomrule
+        \end{tabular}
+        \caption{Vergleich der Performance-Metriken zwischen ChatGPT und Ollama}
+        \label{tab:modellvergleich}
+    \end{table}
+
+    Im folgenden werden die Ergebnisse des Benchmarks vorgestellt und eingeordnet. Die in Kapitel \ref{chap:Metrics} definierten
+    Metriken werden in der obenstehenden Tabelle \ref{tab:modellvergleich} dargestellt. Die hauptsächlichen Unterschiede zwischen den beiden LLMs
+    ist in der Metrik End-to-End Latency zu finden. Die Ollama-Variante ist ca. 5,91-mal höher als die von ChatGPT. Für eine
+    differenzierte Betrachtung der Latenzunterschiede veranschaulicht das Boxplot in Abbildung \ref{fig:e2e-latenz} die Verteilung.
+    Die Ollama-Variante hat eine deutlich höhere Streuung. Die Standardabweichung in der Latenz von Ollama ist ca. 7,02-mal höher als von ChatGPT.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{img/e2e-latenz}
+        \caption{Visualisierung der End-To-End Latenz}
+        \label{fig:e2e-latenz}
+    \end{figure}
+
+    Bei der Genaugkeit sind die Unterschiede auf den
+    ersten Blick nur 3\,\%. Im Umkehrschluss bedeutet diese Verbesserung von 3\,\%, dass 33,33\,\% weniger Fehler passieren.
+    Ähnliche Werte sind bei dem F1-Score festzustellen und auch mit einem Unterschied von ca. 3\,\%. Für eine genauere Einordnung
+    dieser Werte können die Ergebnisse der Klassifikationen in Tabelle \ref{tab:confusion-matrix-chat-gpt} sowie Tabelle \ref{tab:confusion-matrix-ollama}
+    herangezogen werden. Dort ist zu sehen, dass die echten Nachrichten zuverlässig erkannt wurden. Die Fake-News wurden
+    6-mal (ChatGPT-4o) bzw. 9-mal (Gemma3:12b) fälchlicherweise als wahr betitelt.
+
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|l|c|c|}
+            \hline
+            & \textbf{Vorhergesagt: fake} & \textbf{Vorhergesagt: wahr} \\ \hline
+            \textbf{Tatsächlich: fake} & 48 & 6 \\ \hline
+            \textbf{Tatsächlich: wahr} & 0 & 46 \\ \hline
+        \end{tabular}
+        \caption{Ergebnisse der Klassifizierung von ChatGPT-4o}
+        \label{tab:confusion-matrix-chat-gpt}
+    \end{table}
+
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|l|c|c|}
+            \hline
+            & \textbf{Vorhergesagt: fake} & \textbf{Vorhergesagt: wahr} \\ \hline
+            \textbf{Tatsächlich: fake} & 45 & 9 \\ \hline
+            \textbf{Tatsächlich: wahr} & 0 & 46 \\ \hline
+        \end{tabular}
+        \caption{Ergebnisse der Klassifizierung von Ollama (Gemma3:12b)}
+        \label{tab:confusion-matrix-ollama}
+    \end{table}
+
+    Es lässt sich feststellen, dass beide LLMs keine ungültigen Antwortformate zurückgegeben hat. \newline
+    Als Nächstes werden die Kosten pro Workflow berechnet. Für die Workflow-Variante mit ChatGPT-4o werden nur die Kosten
+    für die API betrachtet. Für die Ollama-Variante wird ein Stromverbrauch ermittelt und dieser bepreist.
+
+    Für unsere Stichprobe wurden 77.324 Token an die API gesendet und 249 Tokens empfangen.
+    Es werden 2,5 \$ pro 1 Millionen Input-Tokens und 10 \$ pro 1 Millionen Output-Tokens abgerechnet.\footnote{\url{https://openai.com/de-DE/api/pricing/} (letzter Aufruf: 23.02.2026).}
+    Das verursacht Gesamtkosten von 0,1958 \$, umgerechnet 0,17\,€ bei einem Wechselkurs von 1 \$ = 0,85 € (Stand: 24.02.2026).
+    Diese schlüsseln sich folgendermaßen auf. Für die Input-Tokens fallen Kosten in Höhe von ca. 0,19331 \$ und für Output-Tokens ca. 0,00249 \$.
+    Daraus folgen die Kosten pro Workflow in Höhe von 0,0017 €.
 
 
+    Für die Ausführung von Ollama und n8n wurden auf den bereits beschriebenem PC ca. 600 Watt verwendet. Anhand der
+    Gesamtlaufzeit von 1.556.155,60 ms ergibt das einen Energiebedarf von 0,25936 kWh. Bei einem durchschnittlichen
+    Strompreis von 0,372 € pro kWh im Jahr 2026 für Deutschland fallen Kosten in Höhe von ca. 0,0965 €. \footnote{\url{https://www.bdew.de/service/daten-und-grafiken/bdew-strompreisanalyse/} (letzter Aufruf: 24.02.2026)}
+    Das sind 0,000965 € pro Workflow.
+
+    \clearpage
     \section{Fazit}
     Hier kommt das Fazit.
 
