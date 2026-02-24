@@ -356,11 +356,8 @@
     Im folgenden werden die Ergebnisse des Benchmarks vorgestellt und eingeordnet. Die in Kapitel \ref{chap:Metrics} definierten
     Metriken werden in der obenstehenden Tabelle \ref{tab:modellvergleich} dargestellt. Die hauptsächlichen Unterschiede zwischen den beiden LLMs
     ist in der Metrik End-to-End Latency zu finden. Die Ollama-Variante ist ca. 5,91-mal höher als die von ChatGPT. Für eine
-    differenzierte Betrachtung der Latenzunterschiede veranschaulicht das Boxplot in Abbildung \ref{fig:e2e-latenz} die Verteilung. Dies
-    zeigt die Unterschiede deutlich. Die Ollama-Variante hat nicht auch eine deutlich höhere Streuung. Die Standardabweichung
-    in der Latenz von Ollama ist ca. 7,02-mal höher als von ChatGPT.
-
-
+    differenzierte Betrachtung der Latenzunterschiede veranschaulicht das Boxplot in Abbildung \ref{fig:e2e-latenz} die Verteilung.
+    Die Ollama-Variante hat eine deutlich höhere Streuung. Die Standardabweichung in der Latenz von Ollama ist ca. 7,02-mal höher als von ChatGPT.
 
     \begin{figure}[H]
         \centering
@@ -374,7 +371,7 @@
     Ähnliche Werte sind bei dem F1-Score festzustellen und auch mit einem Unterschied von ca. 3\,\%. Für eine genauere Einordnung
     dieser Werte können die Ergebnisse der Klassifikationen in Tabelle \ref{tab:confusion-matrix-chat-gpt} sowie Tabelle \ref{tab:confusion-matrix-ollama}
     herangezogen werden. Dort ist zu sehen, dass die echten Nachrichten zuverlässig erkannt wurden. Die Fake-News wurden
-    teilweise als wahr betitelt.
+    6-mal (ChatGPT-4o) bzw. 9-mal (Gemma3:12b) fälchlicherweise als wahr betitelt.
 
     \begin{table}[H]
         \centering
@@ -400,17 +397,20 @@
         \label{tab:confusion-matrix-ollama}
     \end{table}
 
-    Es lässt sich feststellen, dass beide LLMs keine ungültigen Antwortformate zurückgegeben hat. Fraglich ist, ob das durch
-    die Stichprobe entstanden ist oder ob es generell so ist. Dafür müssten weitere Sichproben durchgeführt werden.
-    \newline
+    Es lässt sich feststellen, dass beide LLMs keine ungültigen Antwortformate zurückgegeben hat. \newline
     Als Nächstes werden die Kosten pro Workflow berechnet. Für die Workflow-Variante mit ChatGPT-4o werden nur die Kosten
     für die API betrachtet. Für die Ollama-Variante wird ein Stromverbrauch ermittelt und dieser bepreist.
 
-    Für unsere Stichprobe wurden X Token ans die API gesendet und X Tokens empfangen. Beim einem Preis von 2,5\,\$ pro 1
-    Millionen Input-Tokens und 10\,\$ pro 1 Millionen Output-Tokens macht das Gesamtkosten von X\,€. Daraus folen Kosten
-    pro Workflow von X €. \footnote{\url{https://openai.com/de-DE/api/pricing/} (letzter Aufruf: 23.02.2026)}
+    Für unsere Stichprobe wurden 77.324 Token an die API gesendet und 249 Tokens empfangen.
+    Es werden 2,5 \$ pro 1 Millionen Input-Tokens und 10 \$ pro 1 Millionen Output-Tokens abgerechnet.\footnote{\url{https://openai.com/de-DE/api/pricing/} (letzter Aufruf: 23.02.2026).}
+    Das verursacht Gesamtkosten von 0,1958 \$, umgerechnet 0,17\,€ bei einem Wechselkurs von 1 \$ = 0,85 € (Stand: 24.02.2026).
+    Diese schlüsseln sich folgendermaßen auf. Für die Input-Tokens fallen Kosten in Höhe von ca. 0,19331 \$ und für Output-Tokens ca. 0,00249 \$.
+    Daraus folgen die Kosten pro Workflow in Höhe von 0,17 €.
 
 
+    Für die Ausführung von Ollama und n8n wurden auf den bereits beschriebenem PC ca. 600 Watt verwendet. Anhand der
+    Gesamtlaufzeit von 1.556.155,60 ms ergibt das einen Energiebedarf von 0,25936 kWh. Bei einem durchschnittlichen
+    Strompreis von 0,372 € pro kWh im Jahr 2026 für Deutschland fallen Kosten in Höhe von 0,09648192 €. \footnote{\url{https://www.bdew.de/service/daten-und-grafiken/bdew-strompreisanalyse/} (letzter Aufruf: 24.02.2026)}
 
     \clearpage
     \section{Fazit}
