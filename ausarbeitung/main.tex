@@ -68,7 +68,7 @@
     \vfill
     \noindent
     \begin{tabular}{p{4cm}l}
-        Matrikelnummern: & \#\#\# \tabularnewline
+        Matrikelnummern: & ... 202326004 ... \tabularnewline
         Studiengang: & Duales Studium Bachelor of Arts Wirtschaftsinformatik \tabularnewline
         Gruppe: & IT-BW-18 \tabularnewline
         Themensteller: & Prof. Dr. Kruse \tabularnewline
@@ -415,7 +415,64 @@
 
     \clearpage
     \section{Fazit}
-    Hier kommt das Fazit.
+    Ziel dieser Arbeit war ein kennzahlenbasierter Vergleich
+    zweier KI-Agenten hinsichtlich ihrer Fähigkeit zur Erkennung von Fake News in
+    journalistischen Artikeln. Hierzu wurden ein lokal betriebenes Modell über
+    Ollama sowie ein cloudbasierter Agent auf Basis von OpenAIs ChatGPT
+    gegenübergestellt. Bewertet wurden insbesondere Erkennungsrate, Antwortlatenz,
+    Kostenstruktur sowie datenschutzbezogene Aspekte.
+
+    Die Ergebnisse zeigen, dass beide Systeme grundsätzlich
+    in der Lage sind, Fake News mit einer hohen, jedoch nicht vollständigen
+    Genauigkeit zu identifizieren. Der cloudbasierte ChatGPT-Agent erreichte im
+    Benchmark eine leicht höhere Erkennungsrate und zeichnete sich durch geringere
+    Antwortzeiten aus. Demgegenüber wies die lokale Lösung über Ollama eine höhere
+    Latenz auf, überzeugte jedoch durch signifikant geringere operative Kosten pro
+    Ausführung sowie durch den Verbleib sämtlicher Daten auf dem eigenen System.
+    Letzteres stellt insbesondere im Kontext sensibler Inhalte einen relevanten
+    Vorteil dar.
+
+    In der Gesamtbetrachtung wird deutlich, dass die Wahl des
+    Systems stark vom jeweiligen Anwendungsszenario abhängt. Während die Cloud-Lösung
+    durch Performance und marginal bessere Genauigkeit punktet, bietet das lokale
+    Modell Vorteile hinsichtlich Datenschutz, Kostenkontrolle und digitaler
+    Souveränität. Dennoch zeigen die Ergebnisse auch die Grenzen aktueller
+    KI-Systeme: Keine der getesteten Lösungen erreicht eine
+    vollständige Sicherheit in der Erkennung von Desinformation. Eine kritische
+    menschliche Bewertung bleibt daher weiterhin unerlässlich.
+
+    Über die rein technische Betrachtung hinaus ergeben sich
+    zudem strukturelle und gesellschaftliche Fragestellungen. Die Nutzung
+    cloudbasierter KI-Dienste führt zu einer stärkeren Abhängigkeit von großen
+    Technologieunternehmen und geht mit einer kontinuierlichen Übertragung
+    potenziell sensibler Daten einher.\footcite{IndustrJohannSell} Lokale Modelle können somit einen Beitrag zur
+    Stärkung der eigenen Datenhoheit leisten. Gleichzeitig sind jedoch auch ökologische
+    Aspekte zu berücksichtigen: Sowohl zentrale Rechenzentren\footcite{OekoEnergieRechenzentren} als auch lokale
+    Hochleistungs-Hardware\footcite{HeiseEnergieLokal} verursachen erhebliche Energieverbräuche, sodass
+    eine regelmäßige Überprüfung von Fakten durch KI die Frage nach Nachhaltigkeit
+    aufwirft. Insbesondere dann, wenn es sich um die Art von Fakten handelt, welche
+    man genau so mit einer gezielten Suchanfrage im Browser hätte prüfen können.
+
+    Mit Blick auf die zukünftige Entwicklung ist davon
+    auszugehen, dass sich sowohl die Erkennungsraten als auch die Effizienz lokaler
+    Modelle weiter verbessern werden. Fortschritte in der Modellarchitektur sowie spezialisierte
+    Hardwarelösungen könnten dazu führen, dass lokale Systeme hinsichtlich Geschwindigkeit und Genauigkeit
+    weiter aufholen.\footcite{HeiseEnergieLokal} Dennoch erscheint eine Erkennungsrate von 100 Prozent auch
+    in Zukunft als kritisch zu hinterfragen, da Desinformation dynamisch, kontextabhängig
+    und strategisch angepasst verbreitet wird.\footcite{BMBFFakeNews}
+
+    Zusammenfassend zeigt der kennzahlenbasierte Vergleich,
+    dass beide Ansätze leistungsfähige Werkzeuge zur Unterstützung der
+    Fake-News-Erkennung darstellen, jedoch unterschiedliche Zielkonflikte zwischen
+    Performance, Kosten, Datenschutz und Systemabhängigkeit aufweisen. Die
+    Ergebnisse unterstreichen damit nicht nur das Potenzial KI-gestützter
+    Analyseverfahren, sondern auch die Notwendigkeit eines reflektierten und
+    verantwortungsvollen Einsatzes dieser Technologien.
+
+
+
+
+
 
     \newpage
 
