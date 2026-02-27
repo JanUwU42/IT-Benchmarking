@@ -53,7 +53,7 @@
 \title{Kennzahlengestützter Vergleich von n8n-Worklows mit ChatGPT und Ollama zur Erkennung von Fake News in Nachrichtenschlagzeilen
 \\ \large Wissenschaftliche Themenarbeit}
 
-\author{Jonas Schierhold, Henning Franzen, Jan Osing}
+\author{Henning Franzen, Jan Osing, Jonas Schierhold}
 \date{Januar 2026}
 
 \begin{document}
@@ -68,7 +68,7 @@
     \vfill
     \noindent
     \begin{tabular}{p{4cm}l}
-        Matrikelnummern: & ... 202326004 ... \tabularnewline
+        Matrikelnummern: & 202326004, ...,  202326008 \tabularnewline
         Studiengang: & Duales Studium Bachelor of Arts Wirtschaftsinformatik \tabularnewline
         Gruppe: & IT-BW-18 \tabularnewline
         Themensteller: & Prof. Dr. Kruse \tabularnewline
@@ -88,13 +88,12 @@
     \noindent
     \begin{tabular}{p{4cm}l}
         AI & Artifical intelligence (engl. Künstliche Intelligenz) \tabularnewline
+        FN & False negative (engl. falsch-negativ) \tabularnewline
+        FP & False positive (engl. falsch-positiv) \tabularnewline
         JSON & Javascript Object Notation \tabularnewline
         KI & Künstliche Intelligenz \tabularnewline
         LLM & Large Language Model \tabularnewline
-        OLLAMA & Omni-Layer Learning Language Acquisition Model \tabularnewline
-        LLM & Large Language Model \tabularnewline
-        FN & False negative (engl. falsch-negativ) \tabularnewline
-        FP & False positive (engl. falsch-positiv) \tabularnewline
+        RAM & Random access memory (engl. Arbeitsspeicher)
         TN & True negative (engl. richtig negativ) \tabularnewline
         TP & True positive (engl. richtig positiv) \tabularnewline
     \end{tabular}
@@ -262,14 +261,14 @@
     Die Resultate der Kennzahlen werden als arithmetisches Mittel der Kennzahlen dargestellt. Zu jedem Mittelwert wird
     auch die Standardabweichung angegeben.
 
-    \subsection{Auwsahl eines Datensatzes}
+    \subsection{Auswahl eines Datensatzes}
     Zum Testen des Workflows wird ein öffentlicher Datensatz von Kaggle\footnote{\url{https://www.kaggle.com} (letzer Aufruf: 21.02.2026).} ausgewählt.
     Kaggle ist eine der bekanntesten und etabliertesten Plattformen im Bereich Data Science. \footnote{\cite{KaggleUseCase} (letzer Aufruf: 21.02.2026).}
     Die Qualität des Datensatzes ist von entscheidender Relevanz. Um eine realistische Evaluation machen zu können müssen
     die Daten korrekt und in ausreichender Menge verfügbar sein. Außerdem muss eine Zuordnung zu Wahr oder Falsch eindeutig machbar sein.
     Ferner muss eine eindeutige zeitliche Einordnung möglich sein, damit das parametrische Wissen vom LLM abgefragt werden kann.
-    Die Qualität des Datensatzes wird direkt von Kaggle bestimmt. Es gibt
-    einen Usability Score, welcher unter anderem das die Vorgehensweise und Quellen für die Erstellung des Datensatzes überprüft.
+    Die Qualität des Datensatzes wird direkt von Kaggle bestimmt. Es gibt einen Usability Score vergibt, welcher die Nutzbarkeit für
+    Projekte abbilden soll. Dieser Usability Score untersucht unter anderem die Vorgehensweise und das Vorhandensein von Quellen für die Erstellung des Datensatzes genutzt wurden.
     Nichtsdestotrotz muss der Herausgebende des Datensatzes überprüft werden und auf die Vertrauenswürdigkeit überprüft werden.
     \newline
     Für diese Arbeit wurde der folgende Datensatz\footnote{\url{https://www.kaggle.com/datasets/bhavikjikadara/fake-news-detection} (letzer Aufruf: 21.02.2026).} von Bhavik Jikadara verwendet.
